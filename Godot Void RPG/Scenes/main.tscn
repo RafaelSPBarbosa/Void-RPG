@@ -1,3 +1,63 @@
-[gd_scene format=3 uid="uid://bglvd7u03maki"]
+[gd_scene load_steps=10 format=3 uid="uid://bglvd7u03maki"]
+
+[ext_resource type="Material" uid="uid://b2gdwp4n4vsmq" path="res://Sources/Materials/Grid/Grid.tres" id="1_6naa0"]
+[ext_resource type="Material" uid="uid://c2y0fog8cwab7" path="res://Sources/Materials/Grid/GridSmall.tres" id="1_xy84u"]
+[ext_resource type="Script" path="res://Sources/Scripts/Player/Player.gd" id="2_hremk"]
+[ext_resource type="Script" path="res://Sources/Scripts/Player/PlayerCamera.gd" id="3_h7wov"]
+[ext_resource type="Script" path="res://Sources/Scripts/Player/PlayerMovement.gd" id="4_3pj3w"]
+[ext_resource type="Environment" uid="uid://b72hm5rgggtol" path="res://Scenes/main/main.tres" id="5_pp2mp"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_5e7wa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pfyh7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dxyyw"]
 
 [node name="Main" type="Node3D"]
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="Floor" type="Node3D" parent="Level"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Floor"]
+transform = Transform3D(57.0563, 0, 0, 0, -2.49401e-06, 57.0563, 0, -57.0563, -2.49401e-06, -0.0157127, 0.0430188, -0.0107474)
+material_override = ExtResource("1_xy84u")
+mesh = SubResource("QuadMesh_5e7wa")
+
+[node name="Player" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_hremk")
+
+[node name="PlayerCamera" type="Node3D" parent="Player"]
+script = ExtResource("3_h7wov")
+
+[node name="Pivot" type="Node3D" parent="Player/PlayerCamera"]
+transform = Transform3D(1, 0, 0, 0, 0.977593, 0.210506, 0, -0.210506, 0.977593, 0, 1.55098, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/PlayerCamera/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617633, 3.94036)
+fov = 60.0
+
+[node name="PlayerBody" type="CharacterBody3D" parent="Player"]
+script = ExtResource("4_3pj3w")
+mov_speed = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_pfyh7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("1_6naa0")
+mesh = SubResource("CapsuleMesh_dxyyw")
+skeleton = NodePath("")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("5_pp2mp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.668291, 0.601805, 0.437286, -0.737196, 0.614509, 0.28093, -0.0996507, -0.510108, 0.854318, 0, 0, 0)
+light_color = Color(0.786035, 0.403379, 1, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_blur = 3.135

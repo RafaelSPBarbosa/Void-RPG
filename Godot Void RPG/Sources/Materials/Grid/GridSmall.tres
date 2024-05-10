@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c2y0fog8cwab7"]
+
+[ext_resource type="Texture2D" uid="uid://b6myw3f4p0lxa" path="res://Sources/Materials/Grid/Grid.png" id="1_062ji"]
+
+[resource]
+diffuse_mode = 3
+albedo_color = Color(0.517184, 0.517184, 0.517184, 1)
+albedo_texture = ExtResource("1_062ji")
+rim = 0.55
+rim_tint = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+backlight_enabled = true
+backlight = Color(0.708239, 0.323457, 0.735802, 1)
+uv1_scale = Vector3(100, 100, 100)
