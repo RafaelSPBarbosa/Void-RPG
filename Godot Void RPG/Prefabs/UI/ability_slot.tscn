@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqrarpiicypfq"]
+
+[ext_resource type="Texture2D" uid="uid://b6myw3f4p0lxa" path="res://Sources/Materials/Grid/Grid.png" id="1_rl8c0"]
+[ext_resource type="Script" path="res://Sources/Scripts/UI/Abilities/AbilityBttn.gd" id="2_1ln7q"]
+
+[node name="AbilitySlot01" type="TextureRect"]
+clip_children = 2
+custom_minimum_size = Vector2(75, 75)
+texture = ExtResource("1_rl8c0")
+expand_mode = 2
+script = ExtResource("2_1ln7q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0.0807833, 0.0807833, 0.0807833, 0.670588)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
