@@ -33,4 +33,4 @@ bones/26/rotation = Quaternion(0.00452132, 0.075895, 0.805247, 0.588045)
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendSpace2D_vm7av")
 anim_player = NodePath("../AnimationPlayer")
-parameters/blend_position = Vector2(-0.102183, -0.0607735)
+parameters/blend_position = Vector2(-0.283843, 0.448505)
