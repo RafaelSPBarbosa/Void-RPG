@@ -15,7 +15,6 @@ func _ready():
 
 func _physics_process(delta):
 	_move(delta)
-	_rotate_towards_player(delta)
 	
 	pass
 
@@ -34,13 +33,19 @@ func _move(delta):
 	
 	if(enemy_a.global_position.distance_to( target_pos ) > 2.0):
 		enemy_a.velocity = enemy_a.velocity.lerp(direction * speed, accel * delta)
+		_rotate_towards_movement(delta, nav.get_next_path_position())
 	else:
 		enemy_a.velocity = enemy_a.velocity.lerp(Vector3(0,0,0), accel * delta)
+		_rotate_towards_target(delta)
 		pass
 
 	enemy_a.move_and_slide()
 	pass
 	
-func _rotate_towards_player(delta):
+func _rotate_towards_target(delta):
 	enemy_a.look_at(target_pos)
+	pass
+	
+func _rotate_towards_movement(delta, velocity):
+	enemy_a.look_at(velocity)
 	pass
