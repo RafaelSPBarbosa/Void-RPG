@@ -8,7 +8,6 @@ func _animate_player(delta, player_body):
 	local_velocity = local_velocity.normalized()
 	
 	smoothedVelocity = lerp(smoothedVelocity, local_velocity, 0.1)
-	print(smoothedVelocity)
 	
 	set("parameters/Movement_Blend_Space/blend_position", Vector2(smoothedVelocity.x, -smoothedVelocity.z))
 	pass

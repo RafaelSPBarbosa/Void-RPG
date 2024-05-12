@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bglvd7u03maki"]
+[gd_scene load_steps=37 format=3 uid="uid://bglvd7u03maki"]
 
 [ext_resource type="Material" uid="uid://b2gdwp4n4vsmq" path="res://Sources/Materials/Grid/Grid.tres" id="1_6naa0"]
 [ext_resource type="Material" uid="uid://c2y0fog8cwab7" path="res://Sources/Materials/Grid/GridSmall.tres" id="1_xy84u"]
@@ -72,8 +72,6 @@ node_connections = [&"output", 0, &"Movement_Blend_Space"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_46qc7"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ihxwx"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_24fm6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ctay2"]
@@ -138,22 +136,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.659742, 0.294851, 0.316567, 0.614483)
-bones/2/rotation = Quaternion(0.037905, -3.02335e-08, 5.55614e-09, 0.999281)
+bones/1/rotation = Quaternion(-0.659262, 0.295098, 0.316337, 0.614997)
+bones/2/rotation = Quaternion(0.0156545, -2.98415e-08, 7.46789e-11, 0.999878)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0619417, 0.00645103, -0.105501, 0.992467)
-bones/8/rotation = Quaternion(0.173528, 0.0474004, 0.215742, 0.959738)
-bones/9/rotation = Quaternion(0.276641, 0.0221376, -0.0508671, 0.959371)
+bones/7/rotation = Quaternion(-0.057734, 0.00742311, -0.125285, 0.990412)
+bones/8/rotation = Quaternion(0.171353, 0.0485192, 0.227294, 0.957404)
+bones/9/rotation = Quaternion(0.242425, 0.107521, 0.0780992, 0.961025)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.196652, -0.576187, 0.232598, 0.758442)
-bones/12/rotation = Quaternion(-0.708245, -0.0261877, 0.0295447, 0.704862)
+bones/11/rotation = Quaternion(-0.181991, -0.574801, 0.249082, 0.757919)
+bones/12/rotation = Quaternion(-0.676206, -0.0125709, 0.0399746, 0.73552)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0471377, 0.240937, -0.332988, 0.91041)
-bones/19/rotation = Quaternion(-0.359421, -0.244267, -0.348353, 0.830542)
-bones/20/rotation = Quaternion(-0.610091, 0.0383145, -0.0877912, 0.78652)
+bones/18/rotation = Quaternion(0.0387526, 0.251803, -0.310363, 0.915843)
+bones/19/rotation = Quaternion(-0.359155, -0.244099, -0.348882, 0.830485)
+bones/20/rotation = Quaternion(-0.605569, 0.0320447, -0.0893983, 0.790106)
 bones/20/scale = Vector3(1, 1, 1)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
@@ -247,11 +245,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_46qc7")
 skeleton = NodePath("")
 
-[node name="Mesh2" type="MeshInstance3D" parent="EnemyA/MeshContainer/Mesh"]
-transform = Transform3D(0.375117, 0, 0, 0, 0.375117, 0, 0, 0, 0.375117, 0.000314236, 0.608722, -0.503354)
-mesh = SubResource("BoxMesh_ihxwx")
-skeleton = NodePath("")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyA"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_24fm6")
@@ -264,8 +257,5 @@ shape = SubResource("SphereShape3D_ctay2")
 
 [node name="EnemyTarget" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5936, -4.76837e-07, 3.83502)
-
-[connection signal="body_entered" from="EnemyA/Area3D" to="EnemyA" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="EnemyA/Area3D" to="EnemyA" method="_on_area_3d_body_exited"]
 
 [editable path="Player/PlayerBody/Penguin"]
