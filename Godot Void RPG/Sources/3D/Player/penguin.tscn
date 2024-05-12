@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://yw463klpr6r"]
+
+[ext_resource type="PackedScene" uid="uid://b4nepb0j7vagl" path="res://Sources/3D/Player/Penguin.glb" id="1_x1rmd"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vm7av"]
+
+[node name="Penguin" instance=ExtResource("1_x1rmd")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(-0.668816, 0.290105, 0.320921, 0.604594)
+bones/2/rotation = Quaternion(0.0880196, -3.18654e-08, 2.21326e-08, 0.996119)
+bones/3/rotation = Quaternion(0.0638436, 2.87579e-14, 2.48616e-08, 0.99796)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.063322, 0.00613029, -0.0989753, 0.993054)
+bones/8/rotation = Quaternion(0.175696, 0.046265, 0.204057, 0.961952)
+bones/9/rotation = Quaternion(0.283137, 0.00356719, -0.0786159, 0.955845)
+bones/9/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-0.0298734, 0.0319101, 0.184948, 0.981776)
+bones/12/rotation = Quaternion(-0.108612, -0.0597919, 0.0456614, 0.991233)
+bones/13/rotation = Quaternion(-0.0733292, 0.000288607, -0.0231628, 0.997039)
+bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
+bones/18/rotation = Quaternion(-0.0298734, -0.0319101, -0.184948, 0.981776)
+bones/19/rotation = Quaternion(-0.108612, 0.0597919, -0.0456614, 0.991233)
+bones/20/rotation = Quaternion(-0.491138, 0.0525288, -0.102992, 0.863375)
+bones/20/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(-0.0255359, -3.37757e-14, -9.94406e-09, 0.999674)
+bones/23/rotation = Quaternion(0.225264, -0.480388, -0.490157, 0.691541)
+bones/24/rotation = Quaternion(0.00452126, -0.075895, -0.805247, 0.588045)
+bones/25/rotation = Quaternion(0.523302, 0.840025, 0.130968, 0.0579606)
+bones/26/rotation = Quaternion(0.00452132, 0.075895, 0.805247, 0.588045)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendSpace2D_vm7av")
+anim_player = NodePath("../AnimationPlayer")
+parameters/blend_position = Vector2(-0.102183, -0.0607735)

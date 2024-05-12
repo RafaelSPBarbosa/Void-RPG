@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GroundSmack" load_steps=2 format=3 uid="uid://dltjddmycvf86"]
+
+[ext_resource type="Script" path="res://Sources/Scripts/Player/Abilities/GroundSmack.gd" id="1_ldtsp"]
+
+[resource]
+script = ExtResource("1_ldtsp")
+name = "Ground Smack"
+cooldown_duration = 2.0

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CrescentStrike" load_steps=2 format=3 uid="uid://cwwpjmlw2rlxb"]
+
+[ext_resource type="Script" path="res://Sources/Scripts/Player/Abilities/CrescentStrike.gd" id="1_qon44"]
+
+[resource]
+script = ExtResource("1_qon44")
+name = "Crescent Strike"
+cooldown_duration = 1.0

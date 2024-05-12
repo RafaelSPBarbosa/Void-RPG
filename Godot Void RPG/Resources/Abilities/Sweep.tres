@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Sweep" load_steps=2 format=3 uid="uid://04tuof7c2pqj"]
+
+[ext_resource type="Script" path="res://Sources/Scripts/Player/Abilities/Sweep.gd" id="1_1m37j"]
+
+[resource]
+script = ExtResource("1_1m37j")
+name = "Sweep"
+cooldown_duration = 5.0

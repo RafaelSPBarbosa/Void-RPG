@@ -1,18 +1,66 @@
-[gd_scene load_steps=13 format=3 uid="uid://bglvd7u03maki"]
+[gd_scene load_steps=30 format=3 uid="uid://bglvd7u03maki"]
 
 [ext_resource type="Material" uid="uid://b2gdwp4n4vsmq" path="res://Sources/Materials/Grid/Grid.tres" id="1_6naa0"]
 [ext_resource type="Material" uid="uid://c2y0fog8cwab7" path="res://Sources/Materials/Grid/GridSmall.tres" id="1_xy84u"]
+[ext_resource type="NavigationMesh" uid="uid://bqta05r0v3ve1" path="res://Scenes/main/main_navigation_mesh.tres" id="2_dc4p3"]
 [ext_resource type="Script" path="res://Sources/Scripts/Player/Player.gd" id="2_hremk"]
 [ext_resource type="Script" path="res://Sources/Scripts/Player/PlayerCamera.gd" id="3_h7wov"]
 [ext_resource type="Script" path="res://Sources/Scripts/Player/PlayerMovement.gd" id="4_3pj3w"]
 [ext_resource type="Environment" uid="uid://b72hm5rgggtol" path="res://Scenes/main/main.tres" id="5_pp2mp"]
+[ext_resource type="PackedScene" uid="uid://yw463klpr6r" path="res://Sources/3D/Player/penguin.tscn" id="6_egi70"]
 [ext_resource type="Script" path="res://Sources/Scripts/Player/PlayerAbilities.gd" id="6_hb3w1"]
 [ext_resource type="PackedScene" uid="uid://dqrarpiicypfq" path="res://Prefabs/UI/ability_slot.tscn" id="7_7co3a"]
+[ext_resource type="Material" uid="uid://c0jqn3erock07" path="res://Sources/3D/Player/Materials/WhiteFur.tres" id="7_o48yl"]
+[ext_resource type="Script" path="res://Sources/Scripts/Player/PlayerAnimationTree.gd" id="7_xqw6l"]
+[ext_resource type="Material" uid="uid://wgg7trkkggln" path="res://Sources/3D/Player/Materials/BlackFur.tres" id="8_6nush"]
 [ext_resource type="Script" path="res://Sources/Scripts/UI/Abilities/AbilitiesBar.gd" id="8_a1wkw"]
+[ext_resource type="Resource" uid="uid://cwwpjmlw2rlxb" path="res://Resources/Abilities/CrescentStrike.tres" id="10_mtqtk"]
+[ext_resource type="Resource" uid="uid://dltjddmycvf86" path="res://Resources/Abilities/GroundSmack.tres" id="11_l0hfq"]
+[ext_resource type="Resource" uid="uid://04tuof7c2pqj" path="res://Resources/Abilities/Sweep.tres" id="12_e2v28"]
+[ext_resource type="Resource" uid="uid://1sh3r1xk168g" path="res://Resources/Abilities/TrueShot.tres" id="13_eu57w"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5e7wa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pfyh7"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t34xi"]
+animation = &"Walking_Forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4g03"]
+animation = &"Walking_Forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uqhg7"]
+animation = &"Walking_Backwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vbnb"]
+animation = &"Walking_Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8h1dy"]
+animation = &"Walking_Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ohpj"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3odek"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_n4g03")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_uqhg7")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_8vbnb")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_8h1dy")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_3ohpj")
+blend_point_4/pos = Vector2(0, 0)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dxm3h"]
+graph_offset = Vector2(-605.616, 23.988)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_t34xi")
+"nodes/Animation 2/position" = Vector2(60, 360)
+nodes/Movement_Blend_Space/node = SubResource("AnimationNodeBlendSpace2D_3odek")
+nodes/Movement_Blend_Space/position = Vector2(-160, 100)
+nodes/output/position = Vector2(300, 120)
+node_connections = [&"output", 0, &"Movement_Blend_Space"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dxyyw"]
 
@@ -26,6 +74,11 @@
 transform = Transform3D(57.0563, 0, 0, 0, -2.49401e-06, 57.0563, 0, -57.0563, -2.49401e-06, -0.0157127, 0.0430188, -0.0107474)
 material_override = ExtResource("1_xy84u")
 mesh = SubResource("QuadMesh_5e7wa")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Level"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Level"]
+navigation_mesh = ExtResource("2_dc4p3")
 
 [node name="Player" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -49,8 +102,45 @@ mov_speed = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_pfyh7")
 
+[node name="Penguin" parent="Player/PlayerBody" instance=ExtResource("6_egi70")]
+transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.65054, 0.299521, 0.312152, 0.624217)
+bones/2/rotation = Quaternion(0.031045, -3.03733e-08, 5.32897e-09, 0.999518)
+bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.0599106, 0.00692134, -0.115072, 0.991525)
+bones/8/rotation = Quaternion(0.170718, 0.0488421, 0.230635, 0.956701)
+bones/9/rotation = Quaternion(0.265958, 0.0508084, -0.0078327, 0.962613)
+bones/9/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-0.183804, -0.574987, 0.247056, 0.758004)
+bones/12/rotation = Quaternion(-0.699368, -0.0223521, 0.032494, 0.713673)
+bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
+bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
+bones/18/rotation = Quaternion(0.0421749, 0.247395, -0.319616, 0.913708)
+bones/19/rotation = Quaternion(-0.354334, -0.241046, -0.3584, 0.829394)
+bones/20/rotation = Quaternion(-0.607911, 0.035284, -0.0885689, 0.788261)
+bones/20/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
+bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
+bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
+bones/25/rotation = Quaternion(0.493683, 0.851978, 0.172029, 0.0285882)
+bones/26/rotation = Quaternion(0.112983, 0.230621, 0.731437, 0.631703)
+
+[node name="Cube" parent="Player/PlayerBody/Penguin/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("7_o48yl")
+surface_material_override/1 = ExtResource("8_6nush")
+
+[node name="AnimationTree" parent="Player/PlayerBody/Penguin" index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_dxm3h")
+parameters/Movement_Blend_Space/blend_position = Vector2(0, 0)
+script = ExtResource("7_xqw6l")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/PlayerBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 material_override = ExtResource("1_6naa0")
 mesh = SubResource("CapsuleMesh_dxyyw")
 skeleton = NodePath("")
@@ -92,15 +182,21 @@ Abilities = [NodePath("AbilitySlot01"), NodePath("AbilitySlot02"), NodePath("Abi
 
 [node name="AbilitySlot01" parent="HUD/Abilities_HBoxContainer" instance=ExtResource("7_7co3a")]
 layout_mode = 2
+ability = ExtResource("10_mtqtk")
 
 [node name="AbilitySlot02" parent="HUD/Abilities_HBoxContainer" instance=ExtResource("7_7co3a")]
 layout_mode = 2
-cooldown_duration = 1
+ability = ExtResource("11_l0hfq")
 
 [node name="AbilitySlot03" parent="HUD/Abilities_HBoxContainer" instance=ExtResource("7_7co3a")]
 layout_mode = 2
-cooldown_duration = 15
+ability = ExtResource("12_e2v28")
 
 [node name="AbilitySlot04" parent="HUD/Abilities_HBoxContainer" instance=ExtResource("7_7co3a")]
 layout_mode = 2
-cooldown_duration = 5
+ability = ExtResource("13_eu57w")
+
+[node name="EnemyA" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56391, 2.38419e-07, -7.83406)
+
+[editable path="Player/PlayerBody/Penguin"]

@@ -3,8 +3,8 @@ class_name AbilityBttn
 extends TextureRect
 @onready var color_rect = $ColorRect
 @export var cur_cooldown:float = 1.0
-@export var cooldown_duration = 2
 @export var hidden_y_pos:float = 75
+@export var ability:Ability
 
 func _ready():
 	#var tween = get_tree().create_tween() 
