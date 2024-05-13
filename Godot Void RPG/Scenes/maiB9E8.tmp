@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bglvd7u03maki"]
+[gd_scene load_steps=56 format=3 uid="uid://bglvd7u03maki"]
 
 [ext_resource type="Material" uid="uid://b2gdwp4n4vsmq" path="res://Sources/Materials/Grid/Grid.tres" id="1_6naa0"]
 [ext_resource type="Material" uid="uid://c2y0fog8cwab7" path="res://Sources/Materials/Grid/GridSmall.tres" id="1_xy84u"]
@@ -19,7 +19,8 @@
 [ext_resource type="Script" path="res://Sources/Scripts/Player/Abilities/PlayerAbilityArea3D.gd" id="12_4lqsf"]
 [ext_resource type="Resource" uid="uid://04tuof7c2pqj" path="res://Resources/Abilities/Sweep.tres" id="12_e2v28"]
 [ext_resource type="Resource" uid="uid://1sh3r1xk168g" path="res://Resources/Abilities/TrueShot.tres" id="13_eu57w"]
-[ext_resource type="PackedScene" uid="uid://c485ppfvnyngu" path="res://Prefabs/Enemies/enemy_a.tscn" id="20_qm4jf"]
+[ext_resource type="Script" path="res://Sources/Scripts/AI/Enemy/Enemy.gd" id="19_stwyj"]
+[ext_resource type="Script" path="res://Sources/Scripts/AI/Enemy/EnemyMovement.gd" id="20_fba4c"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5e7wa"]
 
@@ -138,6 +139,14 @@ size = Vector3(3.24, 1, 1.48)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqvh6"]
 size = Vector3(1, 1, 8.81396)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_46qc7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ihxwx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_24fm6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ctay2"]
+
 [node name="Main" type="Node3D"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -198,22 +207,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.661389, 0.294, 0.317357, 0.61271)
-bones/2/rotation = Quaternion(0.0388359, -3.02144e-08, 5.58695e-09, 0.999246)
+bones/1/rotation = Quaternion(-0.649384, 0.300098, 0.311597, 0.62542)
+bones/2/rotation = Quaternion(0.0256106, -3.04831e-08, 5.14887e-09, 0.999672)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0622155, 0.00638748, -0.104208, 0.992587)
-bones/8/rotation = Quaternion(0.173948, 0.0471819, 0.21349, 0.960176)
-bones/9/rotation = Quaternion(0.277987, 0.0183663, -0.0565104, 0.958745)
+bones/7/rotation = Quaternion(-0.0584509, 0.0072581, -0.121926, 0.99079)
+bones/8/rotation = Quaternion(0.169153, 0.0496315, 0.238819, 0.954929)
+bones/9/rotation = Quaternion(0.257231, 0.0727723, 0.0252951, 0.963274)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.1985, -0.576343, 0.230505, 0.758482)
-bones/12/rotation = Quaternion(-0.70939, -0.0266861, 0.0291609, 0.703707)
+bones/11/rotation = Quaternion(-0.175757, -0.574129, 0.256025, 0.757586)
+bones/12/rotation = Quaternion(-0.692188, -0.0192856, 0.0348454, 0.720618)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0478302, 0.24003, -0.33485, 0.909931)
-bones/19/rotation = Quaternion(-0.360333, -0.244845, -0.346537, 0.830737)
-bones/20/rotation = Quaternion(-0.610395, 0.0387376, -0.0876825, 0.786276)
+bones/18/rotation = Quaternion(0.0387536, 0.251802, -0.310366, 0.915842)
+bones/19/rotation = Quaternion(-0.353462, -0.240494, -0.360105, 0.829187)
+bones/20/rotation = Quaternion(-0.606341, 0.03311, -0.0891257, 0.789501)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -323,24 +332,46 @@ ability = ExtResource("12_e2v28")
 layout_mode = 2
 ability = ExtResource("13_eu57w")
 
-[node name="EnemyA" parent="." instance=ExtResource("20_qm4jf")]
+[node name="EnemyA" type="CharacterBody3D" parent="." groups=["Enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56391, 2.38419e-07, -7.83406)
+script = ExtResource("19_stwyj")
 
-[node name="EnemyA2" parent="." instance=ExtResource("20_qm4jf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5852, 2.38419e-07, 5.90803)
+[node name="Scripts" type="Node" parent="EnemyA"]
 
-[node name="EnemyA3" parent="." instance=ExtResource("20_qm4jf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9255, 2.38419e-07, -3.30009)
+[node name="AIMovement" type="Node" parent="EnemyA/Scripts"]
+script = ExtResource("20_fba4c")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="EnemyA"]
+path_height_offset = 0.5
+
+[node name="MeshContainer" type="Node3D" parent="EnemyA"]
+
+[node name="Mesh" type="MeshInstance3D" parent="EnemyA/MeshContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_46qc7")
+skeleton = NodePath("")
+
+[node name="Mesh2" type="MeshInstance3D" parent="EnemyA/MeshContainer/Mesh"]
+transform = Transform3D(0.375117, 0, 0, 0, 0.375117, 0, 0, 0, 0.375117, 0.000314236, 0.608722, -0.503354)
+mesh = SubResource("BoxMesh_ihxwx")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_24fm6")
+
+[node name="Area3D" type="Area3D" parent="EnemyA"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyA/Area3D"]
+transform = Transform3D(12.3131, 0, 0, 0, 12.3131, 0, 0, 0, 12.3131, 0, 0, 0)
+shape = SubResource("SphereShape3D_ctay2")
 
 [node name="EnemyTarget" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5936, -4.76837e-07, 3.83502)
 
 [connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_entered"]
 [connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_exited"]
-[connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/GroundSmack" to="Player/PlayerBody/PlayerAbilities/GroundSmack" method="_on_body_entered"]
-[connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/GroundSmack" to="Player/PlayerBody/PlayerAbilities/GroundSmack" method="_on_body_exited"]
-[connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/Sweep" to="Player/PlayerBody/PlayerAbilities/Sweep" method="_on_body_entered"]
-[connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/Sweep" to="Player/PlayerBody/PlayerAbilities/Sweep" method="_on_body_exited"]
-[connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/TrueShot" to="Player/PlayerBody/PlayerAbilities/TrueShot" method="_on_body_entered"]
-[connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/TrueShot" to="Player/PlayerBody/PlayerAbilities/TrueShot" method="_on_body_exited"]
+[connection signal="body_entered" from="EnemyA/Area3D" to="EnemyA" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="EnemyA/Area3D" to="EnemyA" method="_on_area_3d_body_exited"]
 
 [editable path="Player/PlayerBody/Penguin"]

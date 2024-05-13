@@ -5,3 +5,5 @@ extends Node
 @export var maxHealth: int = 100
 
 @onready var player_body = $PlayerBody
+@onready var animation_tree = $PlayerBody/Penguin/AnimationTree
+@onready var player_abilities = $PlayerBody/PlayerAbilities

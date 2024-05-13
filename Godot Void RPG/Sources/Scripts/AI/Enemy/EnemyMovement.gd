@@ -23,7 +23,7 @@ func _move(delta):
 	var direction = Vector3()
 	
 	if(enemy_a.is_aggroed):
-		target_pos = %Player.player_body.global_position
+		target_pos = get_node("/root/Main/Player").player_body.global_position
 		pass
 		
 	nav.target_position = target_pos

@@ -1,12 +1,7 @@
+class_name PlayerAbilities
 extends Node
 
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+@export var crescent_strike_area3D: PlayerAbilityArea3D
+@export var ground_smack_area3D: PlayerAbilityArea3D
+@export var sweep_area3D: PlayerAbilityArea3D
+@export var true_shot_area3D: PlayerAbilityArea3D

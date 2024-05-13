@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://c485ppfvnyngu"]
+
+[ext_resource type="Script" path="res://Sources/Scripts/AI/Enemy/Enemy.gd" id="1_nkeg1"]
+[ext_resource type="Script" path="res://Sources/Scripts/AI/Enemy/EnemyMovement.gd" id="2_ruhc3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_46qc7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ihxwx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_24fm6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ctay2"]
+
+[node name="EnemyA" type="CharacterBody3D" groups=["Enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56391, 2.38419e-07, -7.83406)
+script = ExtResource("1_nkeg1")
+
+[node name="Scripts" type="Node" parent="."]
+
+[node name="AIMovement" type="Node" parent="Scripts"]
+script = ExtResource("2_ruhc3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+
+[node name="MeshContainer" type="Node3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="MeshContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_46qc7")
+skeleton = NodePath("")
+
+[node name="Mesh2" type="MeshInstance3D" parent="MeshContainer/Mesh"]
+transform = Transform3D(0.375117, 0, 0, 0, 0.375117, 0, 0, 0, 0.375117, 0.000314236, 0.608722, -0.503354)
+mesh = SubResource("BoxMesh_ihxwx")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_24fm6")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(12.3131, 0, 0, 0, 12.3131, 0, 0, 0, 12.3131, 0, 0, 0)
+shape = SubResource("SphereShape3D_ctay2")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -19,6 +19,6 @@ func _process(delta):
 		if(Abilities[i].cur_cooldown <= 0):
 			if(Input.is_action_just_pressed(str("Ability0", (i + 1)))):
 				Abilities[i].cur_cooldown = 1.0
-				Abilities[i].ability.use()
+				Abilities[i].ability.use(%Player)
 		pass
 	pass
