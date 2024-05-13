@@ -6,6 +6,7 @@ var enemies: Array
 func _on_body_entered(body):
 	if(body.is_in_group("Enemies")):
 		enemies.append(body)
+		print(str("hitting ", body.name))
 		pass
 	pass
 
@@ -21,4 +22,5 @@ func _on_body_exited(body):
 		
 	if(index > -1):
 		enemies.remove_at(index)
+		print(str("NOT hitting ", body.name))
 	pass
