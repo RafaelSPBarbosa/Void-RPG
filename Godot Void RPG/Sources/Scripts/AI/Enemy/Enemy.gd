@@ -8,6 +8,7 @@ extends CharacterBody3D
 @export var health: int = 100
 @export var max_health: int = 100
 
+
 func _on_area_3d_body_entered(body):
 	if(body.name == "PlayerBody"):
 		print(str(name, " was aggroed by Player"))
@@ -17,8 +18,6 @@ func _on_area_3d_body_entered(body):
 
 func _on_area_3d_body_exited(body):
 	if(body.name == "PlayerBody"):
-		
-		
 		pass
 	pass
 

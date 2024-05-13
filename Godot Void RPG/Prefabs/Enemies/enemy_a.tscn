@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c485ppfvnyngu"]
+[gd_scene load_steps=12 format=3 uid="uid://c485ppfvnyngu"]
 
 [ext_resource type="Script" path="res://Sources/Scripts/AI/Enemy/Enemy.gd" id="1_nkeg1"]
 [ext_resource type="Script" path="res://Sources/Scripts/AI/Enemy/EnemyMovement.gd" id="2_ruhc3"]
+[ext_resource type="Script" path="res://Prefabs/Enemies/HealthbarUI.gd" id="3_p1snc"]
+[ext_resource type="PackedScene" uid="uid://d1ud8paijf1vx" path="res://Prefabs/Enemies/enemy_healthbar_ui.tscn" id="3_x7j6d"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_46qc7"]
 
@@ -10,6 +12,16 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_24fm6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ctay2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kym5v"]
+viewport_path = NodePath("HealthbarUI/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgnk3"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_kym5v")
+
+[sub_resource type="QuadMesh" id="QuadMesh_mw22y"]
 
 [node name="EnemyA" type="CharacterBody3D" groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56391, 2.38419e-07, -7.83406)
@@ -45,5 +57,21 @@ shape = SubResource("CapsuleShape3D_24fm6")
 transform = Transform3D(12.3131, 0, 0, 0, 12.3131, 0, 0, 0, 12.3131, 0, 0, 0)
 shape = SubResource("SphereShape3D_ctay2")
 
+[node name="HealthbarUI" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60987, 0)
+script = ExtResource("3_p1snc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealthbarUI"]
+transform = Transform3D(-1.91266, 0, -8.74228e-08, 0, 1, 0, 1.6721e-07, 0, -1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_bgnk3")
+mesh = SubResource("QuadMesh_mw22y")
+
+[node name="SubViewport" type="SubViewport" parent="HealthbarUI"]
+transparent_bg = true
+
+[node name="Control" parent="HealthbarUI/SubViewport" instance=ExtResource("3_x7j6d")]
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+
+[editable path="HealthbarUI/SubViewport/Control"]
