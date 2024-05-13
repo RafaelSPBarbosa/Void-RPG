@@ -8,6 +8,17 @@ extends CharacterBody3D
 @export var health: int = 100
 @export var max_health: int = 100
 
+@export var damage: int = 5
+@export var time_between_attacks: float = 3
+var time_since_last_attack = 0
+
+func _physics_process(delta):
+	time_since_last_attack += delta
+	if(time_since_last_attack >= time_between_attacks):
+		time_since_last_attack = 0
+		get_node("/root/Main/Player").take_damage(damage)
+		pass
+	pass
 
 func _on_area_3d_body_entered(body):
 	if(body.name == "PlayerBody"):
@@ -32,4 +43,12 @@ func take_damage(damage):
 func die():
 	print(str(name, " has died"))
 	queue_free()
+	pass
+	
+func stop_attacking():
+	
+	pass
+	
+func start_attacking():
+	time_since_last_attack = 0
 	pass

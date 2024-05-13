@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bglvd7u03maki"]
+[gd_scene load_steps=57 format=3 uid="uid://bglvd7u03maki"]
 
 [ext_resource type="Material" uid="uid://b2gdwp4n4vsmq" path="res://Sources/Materials/Grid/Grid.tres" id="1_6naa0"]
 [ext_resource type="Material" uid="uid://c2y0fog8cwab7" path="res://Sources/Materials/Grid/GridSmall.tres" id="1_xy84u"]
@@ -19,7 +19,11 @@
 [ext_resource type="Script" path="res://Sources/Scripts/Player/Abilities/PlayerAbilityArea3D.gd" id="12_4lqsf"]
 [ext_resource type="Resource" uid="uid://04tuof7c2pqj" path="res://Resources/Abilities/Sweep.tres" id="12_e2v28"]
 [ext_resource type="Resource" uid="uid://1sh3r1xk168g" path="res://Resources/Abilities/TrueShot.tres" id="13_eu57w"]
+[ext_resource type="Texture2D" uid="uid://chwpfabvwrjar" path="res://Sources/UI/Circle.png" id="20_1go4u"]
 [ext_resource type="PackedScene" uid="uid://c485ppfvnyngu" path="res://Prefabs/Enemies/enemy_a.tscn" id="20_qm4jf"]
+[ext_resource type="StyleBox" uid="uid://cu323wbpv7tub" path="res://Sources/Styles/ProgressBars/healthbar_ui_bg_small.tres" id="20_r7pb7"]
+[ext_resource type="StyleBox" uid="uid://e403rev64lcm" path="res://Sources/Styles/ProgressBars/healthbar_ui.tres" id="21_busi5"]
+[ext_resource type="Texture2D" uid="uid://cqd3vlpg6qa75" path="res://Sources/UI/PlayerAvatar.png" id="21_c3orc"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5e7wa"]
 
@@ -127,16 +131,22 @@ node_connections = [&"output", 0, &"StateMachine"]
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dxyyw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rb3h0"]
-size = Vector3(1.835, 1.815, 1.58)
+size = Vector3(4, 2.6, 2.375)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nkycc"]
-radius = 2.649
+radius = 5.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tfbi0"]
-size = Vector3(3.24, 1, 1.48)
+size = Vector3(5.23, 2.695, 3.39)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqvh6"]
-size = Vector3(1, 1, 8.81396)
+size = Vector3(2.64, 2.67, 13.864)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxuyj"]
+bg_color = Color(0, 0, 0, 0.231373)
+
+[sub_resource type="Theme" id="Theme_n1a3k"]
+default_font_size = 10
 
 [node name="Main" type="Node3D"]
 
@@ -198,22 +208,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.661292, 0.29405, 0.317311, 0.612814)
-bones/2/rotation = Quaternion(0.0161757, -2.91229e-08, -3.90673e-09, 0.999869)
+bones/1/rotation = Quaternion(-0.668459, 0.290295, 0.32075, 0.604989)
+bones/2/rotation = Quaternion(0.0407308, -2.857e-08, -3.41404e-09, 0.99917)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0586096, 0.00722153, -0.121182, 0.990872)
-bones/8/rotation = Quaternion(0.172209, 0.0480811, 0.222766, 0.958336)
-bones/9/rotation = Quaternion(0.248918, 0.09245, 0.0556076, 0.962497)
+bones/7/rotation = Quaternion(-0.0630959, 0.00618287, -0.100045, 0.992961)
+bones/8/rotation = Quaternion(0.175543, 0.0463456, 0.204885, 0.9618)
+bones/9/rotation = Quaternion(0.2823, 0.00591967, -0.074869, 0.956382)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.186496, -0.575256, 0.244041, 0.758119)
-bones/12/rotation = Quaternion(-0.676824, -0.012828, 0.0397787, 0.734957)
+bones/11/rotation = Quaternion(-0.205232, -0.576872, 0.222848, 0.758576)
+bones/12/rotation = Quaternion(-0.711381, -0.0275548, 0.0284914, 0.701688)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0407782, 0.249199, -0.315842, 0.914593)
-bones/19/rotation = Quaternion(-0.360273, -0.244806, -0.346657, 0.830724)
-bones/20/rotation = Quaternion(-0.606511, 0.0333451, -0.0890656, 0.789367)
+bones/18/rotation = Quaternion(0.050163, 0.236962, -0.341114, 0.908281)
+bones/19/rotation = Quaternion(-0.364301, -0.247355, -0.338578, 0.831544)
+bones/20/rotation = Quaternion(-0.611291, 0.0399895, -0.0873607, 0.785552)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -265,14 +275,14 @@ shape = SubResource("SphereShape3D_nkycc")
 script = ExtResource("12_4lqsf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/PlayerBody/PlayerAbilities/Sweep"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16877, -1.44819)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16877, -1.82231)
 shape = SubResource("BoxShape3D_tfbi0")
 
 [node name="TrueShot" type="Area3D" parent="Player/PlayerBody/PlayerAbilities"]
 script = ExtResource("12_4lqsf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/PlayerBody/PlayerAbilities/TrueShot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16877, -5.35517)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16877, -7.22688)
 shape = SubResource("BoxShape3D_tqvh6")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -322,6 +332,49 @@ ability = ExtResource("12_e2v28")
 [node name="AbilitySlot04" parent="HUD/Abilities_HBoxContainer" instance=ExtResource("7_7co3a")]
 layout_mode = 2
 ability = ExtResource("13_eu57w")
+
+[node name="PlayerPanel" type="Panel" parent="HUD"]
+offset_left = 15.0
+offset_top = 17.0
+offset_right = 185.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dxuyj")
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/PlayerPanel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 158.0
+offset_bottom = 35.0
+theme_override_styles/background = ExtResource("20_r7pb7")
+theme_override_styles/fill = ExtResource("21_busi5")
+max_value = 1.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="HUD/PlayerPanel"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 1.0
+offset_right = 116.0
+offset_bottom = 15.0
+theme = SubResource("Theme_n1a3k")
+theme_override_colors/font_color = Color(0.996078, 0, 0.238958, 1)
+text = "HEALTH"
+
+[node name="AvatarMask" type="TextureRect" parent="HUD/PlayerPanel"]
+clip_children = 2
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+texture = ExtResource("20_1go4u")
+expand_mode = 1
+
+[node name="Avatar" type="TextureRect" parent="HUD/PlayerPanel/AvatarMask"]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+texture = ExtResource("21_c3orc")
+expand_mode = 1
 
 [node name="EnemyA" parent="." instance=ExtResource("20_qm4jf")]
 

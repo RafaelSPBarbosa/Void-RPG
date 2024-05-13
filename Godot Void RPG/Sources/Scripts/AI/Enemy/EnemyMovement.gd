@@ -10,6 +10,7 @@ var target_pos: Vector3
 
 var idle_positions: Array
 var cur_idle_position_index: int = 0
+var is_in_range: bool = false
 
 func _ready():
 	idle_positions.append(Vector3(enemy_a.global_position.x + randf() * 20.0, enemy_a.global_position.y, enemy_a.global_position.z + randf() * 20.0))
@@ -47,9 +48,17 @@ func _move(delta):
 	if(enemy_a.global_position.distance_to( target_pos ) > 2.0):
 		enemy_a.velocity = enemy_a.velocity.lerp(direction * speed, accel * delta)
 		_rotate_towards_movement(delta, nav.get_next_path_position())
+		if(is_in_range):
+			is_in_range = false
+			enemy_a.stop_attacking()
+			pass
 	else:
 		enemy_a.velocity = enemy_a.velocity.lerp(Vector3(0,0,0), accel * delta)
 		_rotate_towards_target(delta)
+		if(!is_in_range):
+			is_in_range = true
+			enemy_a.start_attacking()
+			pass
 		pass
 
 	enemy_a.move_and_slide()
