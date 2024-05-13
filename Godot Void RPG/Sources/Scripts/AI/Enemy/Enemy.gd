@@ -14,9 +14,10 @@ var time_since_last_attack = 0
 
 func _physics_process(delta):
 	time_since_last_attack += delta
-	if(time_since_last_attack >= time_between_attacks):
+	var player = get_node("/root/Main/Player")
+	if(time_since_last_attack >= time_between_attacks && global_position.distance_to(player.player_body.global_position) < 3.0):
 		time_since_last_attack = 0
-		get_node("/root/Main/Player").take_damage(damage)
+		player.take_damage(damage)
 		pass
 	pass
 

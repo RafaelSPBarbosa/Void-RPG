@@ -8,6 +8,7 @@ var target_pos: Vector3
 @onready var nav = $"../../NavigationAgent3D"
 @onready var enemy_a = $"../.."
 
+
 var idle_positions: Array
 var cur_idle_position_index: int = 0
 var is_in_range: bool = false

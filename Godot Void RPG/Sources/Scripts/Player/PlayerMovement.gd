@@ -22,5 +22,7 @@ func _physics_process(delta):
 	player_body.velocity = direction
 	player_body.move_and_slide()
 	animation_tree._animate_player(delta, self)
-	global_transform.basis = player_camera.global_transform.basis;
+	if(direction.length() > 0):
+		global_transform.basis = player_camera.global_transform.basis;
+		pass
 	pass
