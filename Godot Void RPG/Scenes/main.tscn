@@ -20,10 +20,10 @@
 [ext_resource type="Resource" uid="uid://04tuof7c2pqj" path="res://Resources/Abilities/Sweep.tres" id="12_e2v28"]
 [ext_resource type="Resource" uid="uid://1sh3r1xk168g" path="res://Resources/Abilities/TrueShot.tres" id="13_eu57w"]
 [ext_resource type="Texture2D" uid="uid://chwpfabvwrjar" path="res://Sources/UI/Circle.png" id="20_1go4u"]
-[ext_resource type="PackedScene" uid="uid://c485ppfvnyngu" path="res://Prefabs/Enemies/enemy_a.tscn" id="20_qm4jf"]
 [ext_resource type="StyleBox" uid="uid://cu323wbpv7tub" path="res://Sources/Styles/ProgressBars/healthbar_ui_bg_small.tres" id="20_r7pb7"]
 [ext_resource type="StyleBox" uid="uid://e403rev64lcm" path="res://Sources/Styles/ProgressBars/healthbar_ui.tres" id="21_busi5"]
 [ext_resource type="Texture2D" uid="uid://cqd3vlpg6qa75" path="res://Sources/UI/PlayerAvatar.png" id="21_c3orc"]
+[ext_resource type="Script" path="res://Sources/Scripts/Level/EnemySpawner.gd" id="24_oj00y"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5e7wa"]
 
@@ -208,22 +208,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.652188, 0.298695, 0.312942, 0.622495)
-bones/2/rotation = Quaternion(0.018308, -3.06291e-08, 4.90664e-09, 0.999833)
+bones/1/rotation = Quaternion(-0.666252, 0.291461, 0.319691, 0.607418)
+bones/2/rotation = Quaternion(0.0412147, -3.01655e-08, 5.66568e-09, 0.99915)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0569246, 0.00760913, -0.129072, 0.989971)
-bones/8/rotation = Quaternion(0.168988, 0.049714, 0.239675, 0.95474)
-bones/9/rotation = Quaternion(0.245481, 0.100611, 0.0674858, 0.961802)
+bones/7/rotation = Quaternion(-0.0629567, 0.00621526, -0.100704, 0.992903)
+bones/8/rotation = Quaternion(0.175116, 0.0465705, 0.207198, 0.961371)
+bones/9/rotation = Quaternion(0.281533, 0.0082411, -0.0716411, 0.956838)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.171993, -0.5737, 0.260197, 0.757353)
-bones/12/rotation = Quaternion(-0.682148, -0.01505, 0.038084, 0.730067)
+bones/11/rotation = Quaternion(-0.203616, -0.57675, 0.224691, 0.758561)
+bones/12/rotation = Quaternion(-0.71242, -0.0280093, 0.0281409, 0.700629)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0356719, 0.255741, -0.302013, 0.917667)
-bones/19/rotation = Quaternion(-0.355239, -0.241619, -0.356623, 0.829606)
-bones/20/rotation = Quaternion(-0.604817, 0.0310066, -0.0896637, 0.790693)
+bones/18/rotation = Quaternion(0.049709, 0.23756, -0.339896, 0.908606)
+bones/19/rotation = Quaternion(-0.363052, -0.246565, -0.341092, 0.831297)
+bones/20/rotation = Quaternion(-0.611121, 0.0397512, -0.0874219, 0.78569)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -376,13 +376,21 @@ offset_bottom = 80.0
 texture = ExtResource("21_c3orc")
 expand_mode = 1
 
-[node name="EnemyA" parent="." instance=ExtResource("20_qm4jf")]
+[node name="EnemySpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5372, 0, -9.36134)
+script = ExtResource("24_oj00y")
 
-[node name="EnemyA2" parent="." instance=ExtResource("20_qm4jf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5852, 2.38419e-07, 5.90803)
+[node name="EnemySpawner2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4919, 0, 5.59587)
+script = ExtResource("24_oj00y")
 
-[node name="EnemyA3" parent="." instance=ExtResource("20_qm4jf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9255, 2.38419e-07, -3.30009)
+[node name="EnemySpawner3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1879, 0, 17.1788)
+script = ExtResource("24_oj00y")
+
+[node name="EnemySpawner4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3522, 0, -24.6675)
+script = ExtResource("24_oj00y")
 
 [connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_entered"]
 [connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_exited"]
