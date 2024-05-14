@@ -162,7 +162,7 @@ shadow_size = 40
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irfls"]
 bg_color = Color(0, 0, 0, 0.847059)
 border_width_right = 665
-border_color = Color(2.10572e-07, 0.155157, 0.204636, 1)
+border_color = Color(1.8049e-08, 0.0266835, 0.0441553, 1)
 border_blend = true
 shadow_color = Color(0, 0, 0, 0.180392)
 shadow_size = 40
@@ -227,22 +227,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.650084, 0.299749, 0.311933, 0.624692)
-bones/2/rotation = Quaternion(0.0214857, -3.05658e-08, 5.01207e-09, 0.999769)
+bones/1/rotation = Quaternion(-0.649076, 0.300252, 0.311449, 0.625739)
+bones/2/rotation = Quaternion(0.0286205, -3.04224e-08, 5.24863e-09, 0.99959)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0574863, 0.00748007, -0.126445, 0.990278)
-bones/8/rotation = Quaternion(0.168853, 0.0497814, 0.240375, 0.954584)
-bones/9/rotation = Quaternion(0.250528, 0.0888782, 0.0496767, 0.96274)
+bones/7/rotation = Quaternion(-0.0592404, 0.00707609, -0.118221, 0.991193)
+bones/8/rotation = Quaternion(0.169928, 0.0492418, 0.234776, 0.955814)
+bones/9/rotation = Quaternion(0.262098, 0.0606691, 0.00702265, 0.963107)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.171819, -0.57368, 0.26039, 0.757342)
-bones/12/rotation = Quaternion(-0.686595, -0.0169187, 0.0366565, 0.725919)
+bones/11/rotation = Quaternion(-0.17992, -0.574583, 0.251393, 0.757816)
+bones/12/rotation = Quaternion(-0.696189, -0.0209904, 0.0335389, 0.716767)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0366551, 0.254487, -0.30468, 0.917095)
-bones/19/rotation = Quaternion(-0.354077, -0.240883, -0.358903, 0.829333)
-bones/20/rotation = Quaternion(-0.605296, 0.0316682, -0.0894946, 0.790319)
+bones/18/rotation = Quaternion(0.0405839, 0.249449, -0.315317, 0.914715)
+bones/19/rotation = Quaternion(-0.353629, -0.2406, -0.35978, 0.829227)
+bones/20/rotation = Quaternion(-0.607189, 0.034283, -0.0888254, 0.788832)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -486,8 +486,7 @@ offset_right = -9.0
 offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Maybe we shouldn't go in there...dawd awdawda waw da wd aw daw da wd aw daw da w daw dawa"
-autowrap_mode = 2
+text = "Maybe we shouldn't go in there..."
 
 [node name="Character_Right" type="TextureRect" parent="DialogSystem/CanvasLayer/Control"]
 layout_mode = 1
@@ -544,22 +543,6 @@ offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Maybe we shouldn't go in there..."
-autowrap_mode = 2
-
-[node name="tutorial_text" type="Label" parent="DialogSystem/CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -65.0
-offset_top = -78.0
-offset_right = 64.0
-offset_bottom = -55.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Click to continue"
 
 [connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_entered"]
 [connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_exited"]

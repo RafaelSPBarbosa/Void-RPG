@@ -162,7 +162,7 @@ shadow_size = 40
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irfls"]
 bg_color = Color(0, 0, 0, 0.847059)
 border_width_right = 665
-border_color = Color(2.10572e-07, 0.155157, 0.204636, 1)
+border_color = Color(1.8049e-08, 0.0266835, 0.0441553, 1)
 border_blend = true
 shadow_color = Color(0, 0, 0, 0.180392)
 shadow_size = 40
@@ -227,22 +227,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.650084, 0.299749, 0.311933, 0.624692)
-bones/2/rotation = Quaternion(0.0214857, -3.05658e-08, 5.01207e-09, 0.999769)
+bones/1/rotation = Quaternion(-0.650565, 0.299508, 0.312164, 0.62419)
+bones/2/rotation = Quaternion(0.0205739, -3.0584e-08, 4.98182e-09, 0.999788)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
-bones/4/scale = Vector3(1, 1, 1)
-bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0574863, 0.00748007, -0.126445, 0.990278)
-bones/8/rotation = Quaternion(0.168853, 0.0497814, 0.240375, 0.954584)
-bones/9/rotation = Quaternion(0.250528, 0.0888782, 0.0496767, 0.96274)
+bones/4/scale = Vector3(0.976749, 0.996771, 0.804113)
+bones/5/scale = Vector3(0.976749, 0.99677, 0.804112)
+bones/7/rotation = Quaternion(-0.0573002, 0.00752286, -0.127316, 0.990177)
+bones/8/rotation = Quaternion(0.168889, 0.0497635, 0.240189, 0.954625)
+bones/9/rotation = Quaternion(0.249066, 0.0923099, 0.0548816, 0.962514)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.171819, -0.57368, 0.26039, 0.757342)
-bones/12/rotation = Quaternion(-0.686595, -0.0169187, 0.0366565, 0.725919)
+bones/11/rotation = Quaternion(-0.171479, -0.57364, 0.260766, 0.75732)
+bones/12/rotation = Quaternion(-0.685358, -0.0163977, 0.0370547, 0.727078)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0366551, 0.254487, -0.30468, 0.917095)
-bones/19/rotation = Quaternion(-0.354077, -0.240883, -0.358903, 0.829333)
-bones/20/rotation = Quaternion(-0.605296, 0.0316682, -0.0894946, 0.790319)
+bones/18/rotation = Quaternion(0.0362881, 0.254955, -0.303685, 0.917309)
+bones/19/rotation = Quaternion(-0.354337, -0.241048, -0.358394, 0.829395)
+bones/20/rotation = Quaternion(-0.605118, 0.0314215, -0.0895576, 0.790459)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -415,8 +415,6 @@ script = ExtResource("24_oj00y")
 
 [node name="DialogSystem" type="Node" parent="."]
 script = ExtResource("25_q6h3d")
-placeholder_waddles = ExtResource("25_bii6j")
-placeholder_capsule = ExtResource("26_js6y3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="DialogSystem"]
 layer = 2
@@ -486,8 +484,7 @@ offset_right = -9.0
 offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Maybe we shouldn't go in there...dawd awdawda waw da wd aw daw da wd aw daw da w daw dawa"
-autowrap_mode = 2
+text = "Maybe we shouldn't go in there..."
 
 [node name="Character_Right" type="TextureRect" parent="DialogSystem/CanvasLayer/Control"]
 layout_mode = 1
@@ -544,22 +541,6 @@ offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Maybe we shouldn't go in there..."
-autowrap_mode = 2
-
-[node name="tutorial_text" type="Label" parent="DialogSystem/CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -65.0
-offset_top = -78.0
-offset_right = 64.0
-offset_bottom = -55.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Click to continue"
 
 [connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_entered"]
 [connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_exited"]
