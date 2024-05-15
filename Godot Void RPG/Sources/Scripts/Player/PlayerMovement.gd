@@ -7,17 +7,19 @@ extends Node3D
 func _physics_process(delta):
 	var direction = Vector3.ZERO
 	
-	if Input.is_action_pressed("move_forward"):
-		direction += player_camera.global_transform.basis.z * -mov_speed
-		
-	if Input.is_action_pressed("move_backward"):
-		direction += player_camera.global_transform.basis.z * mov_speed
-		
-	if Input.is_action_pressed("move_left"):
-		direction += player_camera.global_transform.basis.x * -mov_speed
+	if get_node("/root/Main/DialogSystem").is_visible == false:
+		if Input.is_action_pressed("move_forward"):
+			direction += player_camera.global_transform.basis.z * -mov_speed
+			
+		if Input.is_action_pressed("move_backward"):
+			direction += player_camera.global_transform.basis.z * mov_speed
+			
+		if Input.is_action_pressed("move_left"):
+			direction += player_camera.global_transform.basis.x * -mov_speed
 
-	if Input.is_action_pressed("move_right"):
-		direction += player_camera.global_transform.basis.x * mov_speed
+		if Input.is_action_pressed("move_right"):
+			direction += player_camera.global_transform.basis.x * mov_speed
+		pass
 		
 	player_body.velocity = direction
 	player_body.move_and_slide()

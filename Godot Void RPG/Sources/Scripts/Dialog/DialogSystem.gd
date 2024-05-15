@@ -17,7 +17,6 @@ extends Node
 @onready var message_right = $CanvasLayer/Control/Dialog_Right/Message
 
 @export var placeholder_waddles: Texture
-@export var placeholder_capsule: Texture
 
 var is_visible = false
 var character_left_sprite: Texture = null
@@ -40,63 +39,40 @@ func _ready():
 	tutorial_text.visible = false
 	pass
 
-func _process(delta):
-	if(Input.is_action_just_pressed("move_backward")):
-		var dialog: Array
-		dialog = [
-			{
-			speaker_sprite = placeholder_waddles,
-			location = Location.Left,
-			speaker = "Waddles",
-			message = "Hey, I came as fast as I could!"
-			},
-			{
-			speaker_sprite = placeholder_capsule,
-			location = Location.Right,
-			speaker = "Capsule",
-			message = "Hey Waddles, good thing you're here! We need to clear out these void monkeys, can you defeat 10 of em for me?"
-			},
-			{
-			speaker_sprite = placeholder_waddles,
-			location = Location.Left,
-			speaker = "Waddles",
-			message = "Of course! Leave it to me, Mr. Capsule!"
-			}
-		]
-		
-		start_dialog(dialog)
-		pass
-	pass
-
 func start_dialog(dialog):
-	is_visible = true;
-	var tween = get_tree().create_tween() 
-	tween.tween_property(dim, "self_modulate:a", 1.0, 1).set_trans(Tween.TRANS_CUBIC)
-	
-	await get_tree().create_timer(1.0).timeout
+	if(is_visible == false):
+		is_visible = true;
+		var tween = get_tree().create_tween() 
+		tween.tween_property(dim, "self_modulate:a", 1.0, 1).set_trans(Tween.TRANS_CUBIC)
 		
-	for line in dialog:
-		speak(line.speaker_sprite, line.location, line.speaker, line.message)
-		tutorial_text.visible = true
+		await get_tree().create_timer(1.0).timeout
+			
+		for line in dialog:
+			var speaker_sprite = line.speaker_sprite
+			if speaker_sprite == null:
+				speaker_sprite = placeholder_waddles
+				pass
+				
+			speak(speaker_sprite, line.location, line.speaker, line.message)
+			tutorial_text.visible = true
+			
+			await Engine.get_main_loop().process_frame
+			while(!Input.is_action_just_pressed("LMB")):
+				await Engine.get_main_loop().process_frame
+				pass
+			pass
 		
 		await Engine.get_main_loop().process_frame
 		while(!Input.is_action_just_pressed("LMB")):
 			await Engine.get_main_loop().process_frame
-			pass
+		
+		tutorial_text.visible = false
+		
+		end_dialog()
 		pass
-	
-	await Engine.get_main_loop().process_frame
-	while(!Input.is_action_just_pressed("LMB")):
-		await Engine.get_main_loop().process_frame
-	
-	tutorial_text.visible = false
-	
-	end_dialog()
 	pass
 	
-func end_dialog():
-	is_visible = false;
-	
+func end_dialog():	
 	dialog_left.visible = false
 	dialog_right.visible = false
 	
@@ -112,6 +88,7 @@ func end_dialog():
 	
 	var tween = get_tree().create_tween() 
 	tween.tween_property(dim, "self_modulate:a", 0.0, 1).set_trans(Tween.TRANS_CUBIC)
+	is_visible = false;
 	pass
 
 func speak(character_sprite: Texture, location: Location, name: String, message: String):

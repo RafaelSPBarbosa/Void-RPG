@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dn4juxt6yciq" path="res://Sources/UI/Dialog/Characters/Waddles - Dialog Avatar.png" id="25_bii6j"]
 [ext_resource type="Script" path="res://Sources/Scripts/Dialog/DialogSystem.gd" id="25_q6h3d"]
 [ext_resource type="Texture2D" uid="uid://cq4w23sto0pam" path="res://Sources/UI/Dialog/Characters/Capsule.png" id="26_js6y3"]
-[ext_resource type="Script" path="res://Sources/Scripts/AI/NPCs/Scene01/MrCapsule_01.gd" id="29_ueg7v"]
+[ext_resource type="Script" path="res://Sources/Scripts/AI/NPCs/NPC.gd" id="28_pit4r"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5e7wa"]
 
@@ -226,7 +226,7 @@ transform = Transform3D(1, 0, 0, 0, 0.977593, 0.210506, 0, -0.210506, 0.977593, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617633, 3.94036)
 fov = 60.0
 
-[node name="MouseInteractor" type="Node3D" parent="Player/PlayerCamera/Pivot/Camera3D"]
+[node name="MouseInteractor" type="Node" parent="Player/PlayerCamera/Pivot/Camera3D"]
 script = ExtResource("6_7ygq7")
 
 [node name="PlayerBody" type="CharacterBody3D" parent="Player"]
@@ -241,22 +241,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.656694, 0.296413, 0.315105, 0.617739)
-bones/2/rotation = Quaternion(0.0361094, -3.02702e-08, 5.4967e-09, 0.999348)
+bones/1/rotation = Quaternion(-0.666914, 0.291112, 0.320009, 0.606691)
+bones/2/rotation = Quaternion(0.0413625, -3.01624e-08, 5.67057e-09, 0.999144)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0613854, 0.00658006, -0.108126, 0.992218)
-bones/8/rotation = Quaternion(0.172713, 0.0478219, 0.220089, 0.958877)
-bones/9/rotation = Quaternion(0.273866, 0.0297952, -0.0393962, 0.960499)
+bones/7/rotation = Quaternion(-0.0630593, 0.00619139, -0.100218, 0.992946)
+bones/8/rotation = Quaternion(0.175269, 0.0464901, 0.206371, 0.961525)
+bones/9/rotation = Quaternion(0.281953, 0.0070252, -0.0734562, 0.956586)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.192997, -0.575867, 0.236729, 0.758346)
-bones/12/rotation = Quaternion(-0.705905, -0.0251717, 0.0303268, 0.707209)
+bones/11/rotation = Quaternion(-0.204253, -0.576798, 0.223965, 0.758567)
+bones/12/rotation = Quaternion(-0.712766, -0.0281607, 0.0280242, 0.700276)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0457697, 0.242725, -0.329307, 0.911343)
-bones/19/rotation = Quaternion(-0.357731, -0.243197, -0.351707, 0.830172)
-bones/20/rotation = Quaternion(-0.609499, 0.0374907, -0.0880028, 0.786995)
+bones/18/rotation = Quaternion(0.0499321, 0.237266, -0.340495, 0.908446)
+bones/19/rotation = Quaternion(-0.36341, -0.246791, -0.340373, 0.831369)
+bones/20/rotation = Quaternion(-0.611181, 0.0398346, -0.0874005, 0.785641)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -430,6 +430,7 @@ script = ExtResource("24_oj00y")
 [node name="DialogSystem" type="Node" parent="."]
 script = ExtResource("25_q6h3d")
 placeholder_waddles = ExtResource("25_bii6j")
+placeholder_capsule = ExtResource("26_js6y3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="DialogSystem"]
 layer = 2
@@ -575,29 +576,27 @@ grow_vertical = 0
 text = "Click to continue"
 
 [node name="NPC_Mr_Capsule" type="Node3D" parent="." groups=["NPCs"]]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 16.8734, 0, -0.314723)
-script = ExtResource("29_ueg7v")
-npc_name = "Mr. Capsule"
-dialog_sprite = ExtResource("26_js6y3")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.8734, 0, -0.314723)
+script = ExtResource("28_pit4r")
 
 [node name="Mesh" type="MeshInstance3D" parent="NPC_Mr_Capsule"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_57trk")
 
 [node name="Face" type="MeshInstance3D" parent="NPC_Mr_Capsule/Mesh"]
-transform = Transform3D(0.137506, 0, -8.88178e-16, 0, 0.137506, 0, 8.88178e-16, 0, 0.0910978, 0.409529, 0.623922, -0.183004)
+transform = Transform3D(0.137506, 0, -4.44089e-16, 0, 0.137506, 0, 4.44089e-16, 0, 0.0910978, -0.436304, 0.623922, -0.183004)
 material_override = SubResource("StandardMaterial3D_gxp0i")
 mesh = SubResource("BoxMesh_0poa2")
 skeleton = NodePath("../..")
 
 [node name="Face3" type="MeshInstance3D" parent="NPC_Mr_Capsule/Mesh"]
-transform = Transform3D(0.137506, 0, -8.88178e-16, 0, 0.137506, 0, 8.88178e-16, 0, 0.0910978, 0.409529, 0.623922, 0.173102)
+transform = Transform3D(0.137506, 0, -4.44089e-16, 0, 0.137506, 0, 4.44089e-16, 0, 0.0910978, -0.436304, 0.623922, 0.173101)
 material_override = SubResource("StandardMaterial3D_gxp0i")
 mesh = SubResource("BoxMesh_0poa2")
 skeleton = NodePath("../..")
 
 [node name="Face2" type="MeshInstance3D" parent="NPC_Mr_Capsule/Mesh"]
-transform = Transform3D(0.198774, 0, 0, 0, 0.0469855, 0, 0, 0, 0.152884, 0.410702, 0.571977, 0.00140768)
+transform = Transform3D(0.198774, 0, -4.44089e-16, 0, 0.0469855, 0, 0, 0, 0.152884, -0.418969, 0.571977, 0.00140762)
 material_override = SubResource("StandardMaterial3D_gxp0i")
 mesh = SubResource("BoxMesh_0poa2")
 skeleton = NodePath("../..")
