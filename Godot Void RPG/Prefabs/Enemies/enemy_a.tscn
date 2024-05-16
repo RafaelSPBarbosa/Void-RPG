@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c485ppfvnyngu"]
+[gd_scene load_steps=12 format=3 uid="uid://icg8jgp65qj5"]
 
-[ext_resource type="Script" path="res://Sources/Scripts/AI/Enemy/Enemy.gd" id="1_nkeg1"]
+[ext_resource type="Script" path="res://Sources/Scripts/AI/Enemy/Enemy_A.gd" id="1_424uy"]
 [ext_resource type="Script" path="res://Sources/Scripts/AI/Enemy/EnemyMovement.gd" id="2_ruhc3"]
 [ext_resource type="Script" path="res://Prefabs/Enemies/HealthbarUI.gd" id="3_p1snc"]
 [ext_resource type="PackedScene" uid="uid://d1ud8paijf1vx" path="res://Prefabs/Enemies/enemy_healthbar_ui.tscn" id="3_x7j6d"]
@@ -25,7 +25,7 @@ albedo_texture = SubResource("ViewportTexture_kym5v")
 
 [node name="EnemyA" type="CharacterBody3D" groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56391, 2.38419e-07, -7.83406)
-script = ExtResource("1_nkeg1")
+script = ExtResource("1_424uy")
 
 [node name="Scripts" type="Node" parent="."]
 

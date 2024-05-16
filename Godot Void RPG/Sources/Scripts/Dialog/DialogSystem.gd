@@ -16,6 +16,9 @@ extends Node
 @onready var speaker_right = $CanvasLayer/Control/Dialog_Right/Speaker
 @onready var message_right = $CanvasLayer/Control/Dialog_Right/Message
 
+@onready var accept_or_refuse = $CanvasLayer/Control/AcceptOrRefuse
+var decision: int = 0
+
 @export var placeholder_waddles: Texture
 
 var is_visible = false
@@ -37,9 +40,11 @@ func _ready():
 	dialog_right.visible = false
 	
 	tutorial_text.visible = false
+	
+	accept_or_refuse.modulate.a = 0.0
 	pass
 
-func start_dialog(dialog):
+func start_dialog(speaker, dialog):
 	if(is_visible == false):
 		is_visible = true;
 		var tween = get_tree().create_tween() 
@@ -48,23 +53,42 @@ func start_dialog(dialog):
 		await get_tree().create_timer(1.0).timeout
 			
 		for line in dialog:
-			var speaker_sprite = line.speaker_sprite
-			if speaker_sprite == null:
-				speaker_sprite = placeholder_waddles
-				pass
+			if(!line.has('quest')):
+				var speaker_sprite = line.speaker_sprite
+				if speaker_sprite == null:
+					speaker_sprite = placeholder_waddles
+					pass
+					
+				speak(speaker_sprite, line.location, line.speaker, line.message)
+				tutorial_text.visible = true
 				
-			speak(speaker_sprite, line.location, line.speaker, line.message)
-			tutorial_text.visible = true
-			
-			await Engine.get_main_loop().process_frame
-			while(!Input.is_action_just_pressed("LMB")):
 				await Engine.get_main_loop().process_frame
+				while(!Input.is_action_just_pressed("LMB")):
+					await Engine.get_main_loop().process_frame
+					pass
 				pass
-			pass
+			else:
+				var decision_tween = get_tree().create_tween() 
+				decision_tween.tween_property(accept_or_refuse, "modulate:a", 1.0, 0.5).set_trans(Tween.TRANS_CUBIC)
+				decision = 0
+				
+				while(decision == 0):
+					await Engine.get_main_loop().process_frame
+					pass
+					
+				accept_or_refuse.modulate.a = 0.0
+					
+				if(decision == 1):
+					get_node("/root/Main/QuestManager").accept_quest(line.quest)
+					decision = 0
+				elif(decision == -1):
+					decision = 0
+					pass
+				pass
 		
-		await Engine.get_main_loop().process_frame
-		while(!Input.is_action_just_pressed("LMB")):
-			await Engine.get_main_loop().process_frame
+		#await Engine.get_main_loop().process_frame
+		#while(!Input.is_action_just_pressed("LMB")):
+			#await Engine.get_main_loop().process_frame
 		
 		tutorial_text.visible = false
 		
@@ -123,4 +147,14 @@ func speak(character_sprite: Texture, location: Location, name: String, message:
 		message_right.text = message
 		dialog_right.visible = true
 		pass
+	pass
+
+
+func _on_accept_bttn_pressed():
+	decision = 1
+	pass
+
+
+func _on_refuse_bttn_pressed():
+	decision = -1
 	pass

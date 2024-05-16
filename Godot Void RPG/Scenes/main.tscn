@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bglvd7u03maki"]
+[gd_scene load_steps=77 format=3 uid="uid://bglvd7u03maki"]
 
 [ext_resource type="Material" uid="uid://b2gdwp4n4vsmq" path="res://Sources/Materials/Grid/Grid.tres" id="1_6naa0"]
 [ext_resource type="Material" uid="uid://c2y0fog8cwab7" path="res://Sources/Materials/Grid/GridSmall.tres" id="1_xy84u"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://cq4w23sto0pam" path="res://Sources/UI/Dialog/Characters/Capsule.png" id="26_js6y3"]
 [ext_resource type="Script" path="res://Sources/Scripts/AI/NPCs/Scene01/MrCapsule_01.gd" id="29_ueg7v"]
 [ext_resource type="Script" path="res://Sources/Scripts/Items/InteractableItem_Cube.gd" id="30_ysq5u"]
+[ext_resource type="Script" path="res://Sources/Scripts/Quests/QuestManager.gd" id="32_wj833"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5e7wa"]
 
@@ -171,6 +172,9 @@ border_blend = true
 shadow_color = Color(0, 0, 0, 0.180392)
 shadow_size = 40
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1y13c"]
+bg_color = Color(0, 0, 0, 0.45098)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_57trk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxp0i"]
@@ -257,22 +261,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.668236, 0.290413, 0.320643, 0.605235)
-bones/2/rotation = Quaternion(0.0418893, -3.01516e-08, 5.68799e-09, 0.999122)
+bones/1/rotation = Quaternion(-0.65731, 0.296099, 0.3154, 0.617084)
+bones/2/rotation = Quaternion(0.0365031, -3.02622e-08, 5.50974e-09, 0.999334)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0631996, 0.00615876, -0.0995545, 0.993004)
-bones/8/rotation = Quaternion(0.175567, 0.046333, 0.204756, 0.961824)
-bones/9/rotation = Quaternion(0.282926, 0.00418681, -0.0776916, 0.955981)
+bones/7/rotation = Quaternion(-0.0615042, 0.00655252, -0.107566, 0.992272)
+bones/8/rotation = Quaternion(0.172886, 0.0477328, 0.219169, 0.959061)
+bones/9/rotation = Quaternion(0.274467, 0.0281512, -0.0418603, 0.960273)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.205533, -0.576894, 0.222504, 0.758579)
-bones/12/rotation = Quaternion(-0.713393, -0.0284356, 0.0278122, 0.699635)
+bones/11/rotation = Quaternion(-0.193776, -0.575937, 0.23585, 0.758368)
+bones/12/rotation = Quaternion(-0.706411, -0.0253912, 0.030158, 0.706703)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0503718, 0.236687, -0.341675, 0.90813)
-bones/19/rotation = Quaternion(-0.364146, -0.247257, -0.338891, 0.831514)
-bones/20/rotation = Quaternion(-0.611394, 0.040132, -0.087324, 0.785469)
+bones/18/rotation = Quaternion(0.0460584, 0.242348, -0.330085, 0.911148)
+bones/19/rotation = Quaternion(-0.358074, -0.243415, -0.351028, 0.830248)
+bones/20/rotation = Quaternion(-0.609626, 0.0376673, -0.0879574, 0.786893)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -613,6 +617,51 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Click to continue"
 
+[node name="AcceptOrRefuse" type="Panel" parent="DialogSystem/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -44.0
+offset_right = 96.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1y13c")
+
+[node name="AcceptBttn" type="Button" parent="DialogSystem/CanvasLayer/Control/AcceptOrRefuse"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -38.0
+offset_right = 33.5
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ACCEPT"
+
+[node name="RefuseBttn" type="Button" parent="DialogSystem/CanvasLayer/Control/AcceptOrRefuse"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = 5.0
+offset_right = 33.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "REFUSE"
+
 [node name="NPC_Mr_Capsule" type="Node3D" parent="." groups=["NPCs"]]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 16.8734, 0, -0.314723)
 script = ExtResource("29_ueg7v")
@@ -656,7 +705,6 @@ transform = Transform3D(0.330071, 0, 0, 0, 0.330071, 0, 0, 0, 0.330071, 0, 0.226
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable_Object_Cube/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_nc32t")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable_Object_Cube"]
@@ -676,6 +724,9 @@ scale_amount_min = 0.1
 scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_uy26u")
 
+[node name="QuestManager" type="Node" parent="."]
+script = ExtResource("32_wj833")
+
 [connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_entered"]
 [connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_exited"]
 [connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/GroundSmack" to="Player/PlayerBody/PlayerAbilities/GroundSmack" method="_on_body_entered"]
@@ -684,5 +735,7 @@ scale_amount_curve = SubResource("Curve_uy26u")
 [connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/Sweep" to="Player/PlayerBody/PlayerAbilities/Sweep" method="_on_body_exited"]
 [connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/TrueShot" to="Player/PlayerBody/PlayerAbilities/TrueShot" method="_on_body_entered"]
 [connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/TrueShot" to="Player/PlayerBody/PlayerAbilities/TrueShot" method="_on_body_exited"]
+[connection signal="pressed" from="DialogSystem/CanvasLayer/Control/AcceptOrRefuse/AcceptBttn" to="DialogSystem" method="_on_accept_bttn_pressed"]
+[connection signal="pressed" from="DialogSystem/CanvasLayer/Control/AcceptOrRefuse/RefuseBttn" to="DialogSystem" method="_on_refuse_bttn_pressed"]
 
 [editable path="Player/PlayerBody/Penguin"]
