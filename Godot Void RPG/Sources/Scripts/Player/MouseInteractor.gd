@@ -13,7 +13,7 @@ func _input(event):
 		var results = space.intersect_ray(query)
 		
 		if results:
-			if(results.collider.get_parent().is_in_group("NPCs")):
+			if(results.collider.get_parent().is_in_group("NPCs") or results.collider.get_parent().is_in_group("InteractableItem")):
 				if(player_body.global_position.distance_to(results.collider.get_parent().global_position) < 6.0):
 					results.collider.get_parent().interact()
 				pass

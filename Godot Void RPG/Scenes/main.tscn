@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bglvd7u03maki"]
+[gd_scene load_steps=75 format=3 uid="uid://bglvd7u03maki"]
 
 [ext_resource type="Material" uid="uid://b2gdwp4n4vsmq" path="res://Sources/Materials/Grid/Grid.tres" id="1_6naa0"]
 [ext_resource type="Material" uid="uid://c2y0fog8cwab7" path="res://Sources/Materials/Grid/GridSmall.tres" id="1_xy84u"]
@@ -27,8 +27,10 @@
 [ext_resource type="Script" path="res://Sources/Scripts/Level/EnemySpawner.gd" id="24_oj00y"]
 [ext_resource type="Texture2D" uid="uid://dn4juxt6yciq" path="res://Sources/UI/Dialog/Characters/Waddles - Dialog Avatar.png" id="25_bii6j"]
 [ext_resource type="Script" path="res://Sources/Scripts/Dialog/DialogSystem.gd" id="25_q6h3d"]
+[ext_resource type="Script" path="res://Sources/Scripts/UI/ProgressPanel.gd" id="25_v1llv"]
 [ext_resource type="Texture2D" uid="uid://cq4w23sto0pam" path="res://Sources/UI/Dialog/Characters/Capsule.png" id="26_js6y3"]
 [ext_resource type="Script" path="res://Sources/Scripts/AI/NPCs/Scene01/MrCapsule_01.gd" id="29_ueg7v"]
+[ext_resource type="Script" path="res://Sources/Scripts/Items/InteractableItem_Cube.gd" id="30_ysq5u"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5e7wa"]
 
@@ -178,6 +180,19 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_47gr3"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nc32t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_phy63"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40ss5"]
+albedo_color = Color(0.950351, 0.655189, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8t58v"]
+
+[sub_resource type="Curve" id="Curve_uy26u"]
+_data = [Vector2(0, 0), 0.0, 1.88688, 0, 1, Vector2(0.507752, 0.958065), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.9463, 0.0, 1, 0]
+point_count = 3
+
 [node name="Main" type="Node3D"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -214,6 +229,7 @@ shape = SubResource("BoxShape3D_8u766")
 
 [node name="Player" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1287, 0, -0.449541)
 script = ExtResource("2_hremk")
 
 [node name="PlayerCamera" type="Node3D" parent="Player"]
@@ -241,22 +257,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.656694, 0.296413, 0.315105, 0.617739)
-bones/2/rotation = Quaternion(0.0361094, -3.02702e-08, 5.4967e-09, 0.999348)
+bones/1/rotation = Quaternion(-0.668236, 0.290413, 0.320643, 0.605235)
+bones/2/rotation = Quaternion(0.0418893, -3.01516e-08, 5.68799e-09, 0.999122)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0613854, 0.00658006, -0.108126, 0.992218)
-bones/8/rotation = Quaternion(0.172713, 0.0478219, 0.220089, 0.958877)
-bones/9/rotation = Quaternion(0.273866, 0.0297952, -0.0393962, 0.960499)
+bones/7/rotation = Quaternion(-0.0631996, 0.00615876, -0.0995545, 0.993004)
+bones/8/rotation = Quaternion(0.175567, 0.046333, 0.204756, 0.961824)
+bones/9/rotation = Quaternion(0.282926, 0.00418681, -0.0776916, 0.955981)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.192997, -0.575867, 0.236729, 0.758346)
-bones/12/rotation = Quaternion(-0.705905, -0.0251717, 0.0303268, 0.707209)
+bones/11/rotation = Quaternion(-0.205533, -0.576894, 0.222504, 0.758579)
+bones/12/rotation = Quaternion(-0.713393, -0.0284356, 0.0278122, 0.699635)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0457697, 0.242725, -0.329307, 0.911343)
-bones/19/rotation = Quaternion(-0.357731, -0.243197, -0.351707, 0.830172)
-bones/20/rotation = Quaternion(-0.609499, 0.0374907, -0.0880028, 0.786995)
+bones/18/rotation = Quaternion(0.0503718, 0.236687, -0.341675, 0.90813)
+bones/19/rotation = Quaternion(-0.364146, -0.247257, -0.338891, 0.831514)
+bones/20/rotation = Quaternion(-0.611394, 0.040132, -0.087324, 0.785469)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -408,6 +424,29 @@ offset_right = 80.0
 offset_bottom = 80.0
 texture = ExtResource("21_c3orc")
 expand_mode = 1
+
+[node name="ProgressPanel" type="Panel" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_top = 100.0
+offset_right = 577.0
+offset_bottom = 202.0
+grow_horizontal = 2
+script = ExtResource("25_v1llv")
+
+[node name="Label" type="Label" parent="HUD/ProgressPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "You have collected a cube!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EnemySpawners" type="Node3D" parent="."]
 
@@ -607,6 +646,35 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NPC_Mr_Capsule/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_47gr3")
+
+[node name="Interactable_Object_Cube" type="Node3D" parent="." groups=["InteractableItem"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.196, 0, -9.141)
+script = ExtResource("30_ysq5u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Interactable_Object_Cube"]
+transform = Transform3D(0.330071, 0, 0, 0, 0.330071, 0, 0, 0, 0.330071, 0, 0.226623, 0)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable_Object_Cube/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_nc32t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable_Object_Cube"]
+transform = Transform3D(0.330071, 0, 0, 0, 0.330071, 0, 0, 0, 0.330071, 0, 0.226623, 0)
+mesh = SubResource("BoxMesh_phy63")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Interactable_Object_Cube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.334106, 0)
+material_override = SubResource("StandardMaterial3D_40ss5")
+amount = 2
+lifetime = 0.65
+mesh = SubResource("BoxMesh_8t58v")
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 2, 0)
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_uy26u")
 
 [connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_entered"]
 [connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_exited"]
