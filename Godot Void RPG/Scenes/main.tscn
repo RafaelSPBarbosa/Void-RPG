@@ -272,22 +272,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.663455, 0.292926, 0.318349, 0.610472)
-bones/2/rotation = Quaternion(0.0204333, -2.89813e-08, -4.08694e-09, 0.999791)
+bones/1/rotation = Quaternion(-0.654732, 0.29741, 0.314163, 0.619818)
+bones/2/rotation = Quaternion(0.016096, -3.0673e-08, 4.83322e-09, 0.99987)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0597427, 0.00696013, -0.115861, 0.991443)
-bones/8/rotation = Quaternion(0.173166, 0.047588, 0.217676, 0.959357)
-bones/9/rotation = Quaternion(0.259317, 0.0672078, 0.0179422, 0.963284)
+bones/7/rotation = Quaternion(-0.0568749, 0.00762053, -0.129304, 0.989943)
+bones/8/rotation = Quaternion(0.169656, 0.0493786, 0.236195, 0.955505)
+bones/9/rotation = Quaternion(0.242247, 0.107965, 0.0786706, 0.960974)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.191697, -0.575749, 0.238194, 0.758306)
-bones/12/rotation = Quaternion(-0.681844, -0.0149227, 0.0381812, 0.730348)
+bones/11/rotation = Quaternion(-0.173828, -0.573911, 0.258165, 0.75747)
+bones/12/rotation = Quaternion(-0.678862, -0.0136767, 0.0391318, 0.733095)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0432439, 0.24601, -0.322501, 0.913018)
-bones/19/rotation = Quaternion(-0.361482, -0.245572, -0.344241, 0.830977)
-bones/20/rotation = Quaternion(-0.60773, 0.0350335, -0.0886331, 0.788404)
+bones/18/rotation = Quaternion(0.0358135, 0.25556, -0.302397, 0.917585)
+bones/19/rotation = Quaternion(-0.35665, -0.242513, -0.353844, 0.829929)
+bones/20/rotation = Quaternion(-0.605043, 0.0313189, -0.0895838, 0.790517)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -755,6 +755,63 @@ scale_amount_curve = SubResource("Curve_uy26u")
 
 [node name="QuestManager" type="Node" parent="."]
 script = ExtResource("32_wj833")
+
+[node name="Panel" type="Panel" parent="QuestManager"]
+self_modulate = Color(1, 1, 1, 0.243137)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -84.0
+offset_right = -18.0
+offset_bottom = 118.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestManager/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quest1" type="Label" parent="QuestManager/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 2
+
+[node name="Quest2" type="Label" parent="QuestManager/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 2
+
+[node name="Quest3" type="Label" parent="QuestManager/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 2
+
+[node name="Quest4" type="Label" parent="QuestManager/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 2
+
+[node name="Quest5" type="Label" parent="QuestManager/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 2
+
+[node name="Quest6" type="Label" parent="QuestManager/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 2
+
+[node name="Quest7" type="Label" parent="QuestManager/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 2
 
 [connection signal="body_entered" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_entered"]
 [connection signal="body_exited" from="Player/PlayerBody/PlayerAbilities/CrescentStrike" to="Player/PlayerBody/PlayerAbilities/CrescentStrike" method="_on_body_exited"]

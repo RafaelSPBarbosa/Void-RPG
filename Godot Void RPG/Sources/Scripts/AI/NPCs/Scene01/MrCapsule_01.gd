@@ -3,8 +3,8 @@ extends NPC
 
 func interact():
 	super.interact()
-	
-	if(get_node("/root/Main/QuestManager").is_quest_available(available_quest)):
+	var quest = get_node("/root/Main/QuestManager").quests[available_quest]
+	if(quest.status == QuestManager.QuestStatus.Available):
 		var dialog: Array
 		dialog = [
 			{
@@ -31,7 +31,45 @@ func interact():
 		]
 			
 		get_node("/root/Main/DialogSystem").start_dialog(self, dialog)
-	else:
-			
+		
+	elif quest.status == QuestManager.QuestStatus.ReadyForTurnIn:
+		get_node("/root/Main/QuestManager").deliver_quest(available_quest)
+		var dialog: Array
+		dialog = [
+			{
+			speaker_sprite = null,
+			location = DialogSystem.Location.Left,
+			speaker = "Waddles",
+			message = "Mr. Capsule, I've done it, the void monkeys are no more!"
+			},
+			{
+			speaker_sprite = dialog_sprite,
+			location = DialogSystem.Location.Right,
+			speaker = npc_name,
+			message = "Hey, good job Waddles! The town will certainly be safer now"
+			},
+			{
+			speaker_sprite = dialog_sprite,
+			location = DialogSystem.Location.Right,
+			speaker = npc_name,
+			message = "You should head over to Mr. Capsule_2, he's got another quest for you"
+			},
+			{
+				quest = 1
+			}
+		]
+		get_node("/root/Main/DialogSystem").start_dialog(self, dialog)
+		
+	elif quest.status == QuestManager.QuestStatus.Done:
+		var dialog: Array
+		dialog = [
+			{
+			speaker_sprite = dialog_sprite,
+			location = DialogSystem.Location.Right,
+			speaker = npc_name,
+			message = "I don't have anything for you anymore man, go help someone else now"
+			}
+		]
+		get_node("/root/Main/DialogSystem").start_dialog(self, dialog)
 		pass
 	pass
