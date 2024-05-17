@@ -21,16 +21,25 @@ enum QuestStatus
 }
 
 func _ready():
-	quests.append({id = 0, title = "Void Extermination", description = "Defeat 2 different void monkeys and return to Mr. Capsule for your reward", status = QuestStatus.Available, progress = 0, goal = 2})
+	quests.append({id = 0, title = "Void Extermination", description = "Defeat 2 different void monkeys and return to Mr. Capsule for your reward", status = QuestStatus.Available, progress = 0, goal = 2, reward= { xp = 100 }})
+	quests.append({id = 1, title = "A Message Most Dire", description = "Talk to Mr. Capsules 2 further up ahead", status = QuestStatus.Available, progress = 0, goal = 1, reward= { xp = 100 }})
 	pass
 	
 func update_quest_log():
 	var i = -1;
 	
+	quest_1.text = ""
+	quest_2.text = ""
+	quest_3.text = ""
+	quest_4.text = ""
+	quest_5.text = ""
+	quest_6.text = ""
+	quest_7.text = ""
+	
 	for quest in quests:
+		i += 1
 		if(quest.status == QuestStatus.InProgress or quest.status == QuestStatus.ReadyForTurnIn):
 			print(str(i, "is an available quest"))
-			i += 1
 			
 			var quest_string = str(quests[i].title, "\n", quests[i].description, "\n", quests[i].progress, " / ", quests[i].goal);
 			if(quest.status == QuestStatus.ReadyForTurnIn):
@@ -55,43 +64,6 @@ func update_quest_log():
 			
 			pass
 		pass
-	
-	if i < 6:
-		quest_7.text = ""
-	elif i < 5:
-		quest_7.text = ""
-		quest_6.text = ""
-	elif i < 4:
-		quest_7.text = ""
-		quest_6.text = ""
-		quest_5.text = ""
-	elif i < 3:
-		quest_7.text = ""
-		quest_6.text = ""
-		quest_5.text = ""
-		quest_4.text = ""
-	elif i < 2:
-		quest_7.text = ""
-		quest_6.text = ""
-		quest_5.text = ""
-		quest_4.text = ""
-		quest_3.text = ""
-	elif i < 1:
-		quest_7.text = ""
-		quest_6.text = ""
-		quest_5.text = ""
-		quest_4.text = ""
-		quest_3.text = ""
-		quest_2.text = ""
-	elif i < 0:
-		quest_7.text = ""
-		quest_6.text = ""
-		quest_5.text = ""
-		quest_4.text = ""
-		quest_3.text = ""
-		quest_2.text = ""
-		quest_1.text = ""
-	pass
 
 func accept_quest(id):
 	if(quests[id].status == QuestStatus.Available):
@@ -105,6 +77,9 @@ func deliver_quest(id):
 	if(quests[id].status == QuestStatus.ReadyForTurnIn):
 		quests[id].status = QuestStatus.Done
 		print(str("Completed quest ", quests[id].title))
+		if(quests[id].reward.has('xp')):
+			print(str("Earned ", quests[id].reward.xp, " Experience Points"))
+			pass
 		update_quest_log()
 		pass
 	pass	
