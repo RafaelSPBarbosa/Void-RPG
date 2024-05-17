@@ -1,11 +1,10 @@
 extends NPC
 
-var hasQuest:bool = true;
 
 func interact():
 	super.interact()
 	
-	if(get_node("/root/Main/QuestManager").is_quest_available(0)):
+	if(get_node("/root/Main/QuestManager").is_quest_available(available_quest)):
 		var dialog: Array
 		dialog = [
 			{

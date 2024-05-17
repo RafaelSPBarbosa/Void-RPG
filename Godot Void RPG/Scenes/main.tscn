@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bglvd7u03maki"]
+[gd_scene load_steps=82 format=3 uid="uid://bglvd7u03maki"]
 
 [ext_resource type="Material" uid="uid://b2gdwp4n4vsmq" path="res://Sources/Materials/Grid/Grid.tres" id="1_6naa0"]
 [ext_resource type="Material" uid="uid://c2y0fog8cwab7" path="res://Sources/Materials/Grid/GridSmall.tres" id="1_xy84u"]
@@ -31,7 +31,9 @@
 [ext_resource type="Texture2D" uid="uid://cq4w23sto0pam" path="res://Sources/UI/Dialog/Characters/Capsule.png" id="26_js6y3"]
 [ext_resource type="Script" path="res://Sources/Scripts/AI/NPCs/Scene01/MrCapsule_01.gd" id="29_ueg7v"]
 [ext_resource type="Script" path="res://Sources/Scripts/Items/InteractableItem_Cube.gd" id="30_ysq5u"]
+[ext_resource type="PackedScene" uid="uid://dyjsr83p35qur" path="res://Sources/3D/NPCs/Icons/QuestAvailableIcon.glb" id="31_ejql4"]
 [ext_resource type="Script" path="res://Sources/Scripts/Quests/QuestManager.gd" id="32_wj833"]
+[ext_resource type="PackedScene" uid="uid://dgos3jrqwt6ju" path="res://Sources/3D/NPCs/Icons/QuestProgressIcon.glb" id="32_y4qy4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5e7wa"]
 
@@ -184,6 +186,15 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_47gr3"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_te0ua"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2oan5"]
+albedo_color = Color(0.587647, 0.599736, 0.604907, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jy1fd"]
+albedo_color = Color(1, 1, 0, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_nc32t"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_phy63"]
@@ -261,22 +272,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.65731, 0.296099, 0.3154, 0.617084)
-bones/2/rotation = Quaternion(0.0365031, -3.02622e-08, 5.50974e-09, 0.999334)
+bones/1/rotation = Quaternion(-0.663455, 0.292926, 0.318349, 0.610472)
+bones/2/rotation = Quaternion(0.0204333, -2.89813e-08, -4.08694e-09, 0.999791)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0615042, 0.00655252, -0.107566, 0.992272)
-bones/8/rotation = Quaternion(0.172886, 0.0477328, 0.219169, 0.959061)
-bones/9/rotation = Quaternion(0.274467, 0.0281512, -0.0418603, 0.960273)
+bones/7/rotation = Quaternion(-0.0597427, 0.00696013, -0.115861, 0.991443)
+bones/8/rotation = Quaternion(0.173166, 0.047588, 0.217676, 0.959357)
+bones/9/rotation = Quaternion(0.259317, 0.0672078, 0.0179422, 0.963284)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.193776, -0.575937, 0.23585, 0.758368)
-bones/12/rotation = Quaternion(-0.706411, -0.0253912, 0.030158, 0.706703)
+bones/11/rotation = Quaternion(-0.191697, -0.575749, 0.238194, 0.758306)
+bones/12/rotation = Quaternion(-0.681844, -0.0149227, 0.0381812, 0.730348)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0460584, 0.242348, -0.330085, 0.911148)
-bones/19/rotation = Quaternion(-0.358074, -0.243415, -0.351028, 0.830248)
-bones/20/rotation = Quaternion(-0.609626, 0.0376673, -0.0879574, 0.786893)
+bones/18/rotation = Quaternion(0.0432439, 0.24601, -0.322501, 0.913018)
+bones/19/rotation = Quaternion(-0.361482, -0.245572, -0.344241, 0.830977)
+bones/20/rotation = Quaternion(-0.60773, 0.0350335, -0.0886331, 0.788404)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -696,6 +707,24 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_47gr3")
 
+[node name="QuestAvailableIcon" parent="NPC_Mr_Capsule" instance=ExtResource("31_ejql4")]
+transform = Transform3D(0.415752, 0, 0, 0, 0.415752, 0, 0, 0, 0.415752, 0, 2.31977, 0)
+
+[node name="Cube" parent="NPC_Mr_Capsule/QuestAvailableIcon" index="0"]
+material_override = SubResource("StandardMaterial3D_te0ua")
+
+[node name="QuestInProgressIcon" parent="NPC_Mr_Capsule" instance=ExtResource("32_y4qy4")]
+transform = Transform3D(-0.401965, 0, 3.51409e-08, 0, 0.401965, 0, -3.51409e-08, 0, -0.401965, 0, 2.24993, 0)
+
+[node name="Cube" parent="NPC_Mr_Capsule/QuestInProgressIcon" index="0"]
+material_override = SubResource("StandardMaterial3D_2oan5")
+
+[node name="QuestReadyForTurnInIcon" parent="NPC_Mr_Capsule" instance=ExtResource("32_y4qy4")]
+transform = Transform3D(-0.401965, 0, 3.51409e-08, 0, 0.401965, 0, -3.51409e-08, 0, -0.401965, 0, 2.24993, 0)
+
+[node name="Cube" parent="NPC_Mr_Capsule/QuestReadyForTurnInIcon" index="0"]
+material_override = SubResource("StandardMaterial3D_jy1fd")
+
 [node name="Interactable_Object_Cube" type="Node3D" parent="." groups=["InteractableItem"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.196, 0, -9.141)
 script = ExtResource("30_ysq5u")
@@ -739,3 +768,6 @@ script = ExtResource("32_wj833")
 [connection signal="pressed" from="DialogSystem/CanvasLayer/Control/AcceptOrRefuse/RefuseBttn" to="DialogSystem" method="_on_refuse_bttn_pressed"]
 
 [editable path="Player/PlayerBody/Penguin"]
+[editable path="NPC_Mr_Capsule/QuestAvailableIcon"]
+[editable path="NPC_Mr_Capsule/QuestInProgressIcon"]
+[editable path="NPC_Mr_Capsule/QuestReadyForTurnInIcon"]
