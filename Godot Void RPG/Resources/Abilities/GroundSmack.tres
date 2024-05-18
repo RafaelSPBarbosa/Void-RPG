@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ldtsp")
-damage = 5
+damage = 15
 name = "Ground Smack"
 cooldown_duration = 2.0
 minimum_level = 2

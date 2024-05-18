@@ -4,5 +4,7 @@
 
 [resource]
 script = ExtResource("1_qon44")
+damage = 20
 name = "Crescent Strike"
 cooldown_duration = 1.0
+minimum_level = 1

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_u7mu7")
-damage = 15
+damage = 30
 name = "True Shot"
 cooldown_duration = 3.0
 minimum_level = 4
