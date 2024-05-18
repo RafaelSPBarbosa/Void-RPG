@@ -61,7 +61,8 @@ func interact():
 					message = "You should head over to Mr. Capsule_2, he's got another quest for you"
 					},
 					{
-						quest = 1
+						quest = 1,
+						refusable = false
 					}
 				]
 				get_node("/root/Main/DialogSystem").start_dialog(self, dialog)

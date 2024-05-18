@@ -69,23 +69,27 @@ func start_dialog(speaker, dialog):
 					pass
 				pass
 			else:
-				var decision_tween = get_tree().create_tween() 
-				decision_tween.tween_property(accept_or_refuse, "modulate:a", 1.0, 0.5).set_trans(Tween.TRANS_CUBIC)
-				decision = 0
-				await get_tree().create_timer(1.0).timeout
-				
-				while(decision == 0):
-					await Engine.get_main_loop().process_frame
+				if(!line.has('refusable')):
+					var decision_tween = get_tree().create_tween() 
+					decision_tween.tween_property(accept_or_refuse, "modulate:a", 1.0, 0.5).set_trans(Tween.TRANS_CUBIC)
+					decision = 0
+					await get_tree().create_timer(1.0).timeout
+					
+					while(decision == 0):
+						await Engine.get_main_loop().process_frame
+						pass
+						
+					accept_or_refuse.modulate.a = 0.0
+						
+					if(decision == 1):
+						get_node("/root/Main/QuestManager").accept_quest(line.quest)
+						decision = 0
+					elif(decision == -1):
+						decision = 0
+						pass
 					pass
-					
-				accept_or_refuse.modulate.a = 0.0
-					
-				if(decision == 1):
+				else:
 					get_node("/root/Main/QuestManager").accept_quest(line.quest)
-					decision = 0
-				elif(decision == -1):
-					decision = 0
-					pass
 				pass
 		
 		#await Engine.get_main_loop().process_frame
