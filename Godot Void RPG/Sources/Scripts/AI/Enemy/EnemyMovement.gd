@@ -1,27 +1,25 @@
 class_name EnemyMovement
-extends Node
+extends Node3D
 
 var speed = 5
 var accel = 10
 var target_pos: Vector3
 
 @onready var nav = $"../../NavigationAgent3D"
-@onready var enemy_a = $"../.."
+@onready var enemy_a = $"../../.."
+@onready var character_body_3d = $"../.."
 
 
-var idle_positions: Array
+var positions: Array [Node3D]
 var cur_idle_position_index: int = 0
 var is_in_range: bool = false
 
 func _ready():
-	idle_positions.append(Vector3(enemy_a.global_position.x + randf() * 20.0, enemy_a.global_position.y, enemy_a.global_position.z + randf() * 20.0))
-	idle_positions.append(Vector3(enemy_a.global_position.x + randf() * 20.0, enemy_a.global_position.y, enemy_a.global_position.z + randf() * 20.0))
-	idle_positions.append(Vector3(enemy_a.global_position.x + randf() * 20.0, enemy_a.global_position.y, enemy_a.global_position.z + randf() * 20.0))
-	
+	await get_tree().create_timer(0.2).timeout
 	while(enemy_a.health >= 0):
-		target_pos = idle_positions[cur_idle_position_index]
+		target_pos = positions[cur_idle_position_index].global_position
 		cur_idle_position_index += 1
-		if(cur_idle_position_index >= idle_positions.size()):
+		if(cur_idle_position_index >= positions.size()):
 			cur_idle_position_index = 0
 			pass
 		await get_tree().create_timer(2).timeout
@@ -42,19 +40,19 @@ func _move(delta):
 		pass
 		
 	nav.target_position = target_pos
-	
-	direction = nav.get_next_path_position() - enemy_a.global_position
+	print(nav.get_next_path_position())
+	direction = nav.get_next_path_position() - character_body_3d.global_position
 	direction = direction.normalized()
 	
-	if(enemy_a.global_position.distance_to( target_pos ) > 2.0):
-		enemy_a.velocity = enemy_a.velocity.lerp(direction * speed, accel * delta)
+	if(character_body_3d.global_position.distance_to( target_pos ) > 2.0):
+		character_body_3d.velocity = character_body_3d.velocity.lerp(direction * speed, accel * delta)
 		_rotate_towards_movement(delta, nav.get_next_path_position())
 		if(is_in_range):
 			is_in_range = false
 			enemy_a.stop_attacking()
 			pass
 	else:
-		enemy_a.velocity = enemy_a.velocity.lerp(Vector3(0,0,0), accel * delta)
+		character_body_3d.velocity = character_body_3d.velocity.lerp(Vector3(0,0,0), accel * delta)
 		_rotate_towards_target(delta)
 		if(!is_in_range):
 			is_in_range = true
@@ -62,13 +60,18 @@ func _move(delta):
 			pass
 		pass
 
-	enemy_a.move_and_slide()
+	character_body_3d.move_and_slide()
 	pass
 	
 func _rotate_towards_target(delta):
-	enemy_a.look_at(target_pos)
+	var pos = target_pos
+	pos.y = character_body_3d.global_position.y
+	character_body_3d.look_at(pos)
 	pass
 	
 func _rotate_towards_movement(delta, velocity):
-	enemy_a.look_at(velocity)
+	var pos = velocity
+	pos.y = character_body_3d.global_position.y
+	if(pos.distance_to(character_body_3d.global_position) > 0.1):
+		character_body_3d.look_at(pos)
 	pass

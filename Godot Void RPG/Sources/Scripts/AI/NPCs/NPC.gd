@@ -73,5 +73,7 @@ func update_quest_indicator():
 
 func interact():
 	print(str("speaking with ", npc_name))
-	look_at(get_node("/root/Main/Player/PlayerBody").global_position)
+	var player_pos = get_node("/root/Main/Player/PlayerBody").global_position
+	player_pos.y = global_position.y
+	look_at(player_pos)
 	pass

@@ -4,9 +4,14 @@ extends Node3D
 @export var mov_speed: float
 @onready var animation_tree = $Penguin/AnimationTree
 
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 func _physics_process(delta):
 	var direction = Vector3.ZERO
 	
+	if(!player_body.is_on_floor()):
+		direction.y -= gravity
+		
 	if get_node("/root/Main/DialogSystem").is_visible == false:
 		if Input.is_action_pressed("move_forward"):
 			direction += player_camera.global_transform.basis.z * -mov_speed
@@ -23,6 +28,7 @@ func _physics_process(delta):
 		
 	player_body.velocity = direction
 	player_body.move_and_slide()
+	
 	animation_tree._animate_player(delta, self)
 	if(direction.length() > 0):
 		global_transform.basis = player_camera.global_transform.basis;

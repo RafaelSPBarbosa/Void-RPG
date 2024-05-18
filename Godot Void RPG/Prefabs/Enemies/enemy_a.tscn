@@ -14,7 +14,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_ctay2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kym5v"]
-viewport_path = NodePath("HealthbarUI/SubViewport")
+viewport_path = NodePath("CharacterBody3D/HealthbarUI/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgnk3"]
 resource_local_to_scene = true
@@ -23,55 +23,53 @@ albedo_texture = SubResource("ViewportTexture_kym5v")
 
 [sub_resource type="QuadMesh" id="QuadMesh_mw22y"]
 
-[node name="EnemyA" type="CharacterBody3D" groups=["Enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56391, 2.38419e-07, -7.83406)
+[node name="enemy_a" type="Node3D"]
 script = ExtResource("1_424uy")
 
-[node name="Scripts" type="Node" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 
-[node name="AIMovement" type="Node" parent="Scripts"]
+[node name="Scripts" type="Node3D" parent="CharacterBody3D" groups=["Enemies"]]
+
+[node name="AIMovement" type="Node3D" parent="CharacterBody3D/Scripts"]
 script = ExtResource("2_ruhc3")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D"]
 path_height_offset = 0.5
 
-[node name="MeshContainer" type="Node3D" parent="."]
+[node name="MeshContainer" type="Node3D" parent="CharacterBody3D"]
 
-[node name="Mesh" type="MeshInstance3D" parent="MeshContainer"]
+[node name="Mesh" type="MeshInstance3D" parent="CharacterBody3D/MeshContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_46qc7")
 skeleton = NodePath("")
 
-[node name="Mesh2" type="MeshInstance3D" parent="MeshContainer/Mesh"]
+[node name="Mesh2" type="MeshInstance3D" parent="CharacterBody3D/MeshContainer/Mesh"]
 transform = Transform3D(0.375117, 0, 0, 0, 0.375117, 0, 0, 0, 0.375117, 0.000314236, 0.608722, -0.503354)
 mesh = SubResource("BoxMesh_ihxwx")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_24fm6")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="CharacterBody3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D"]
 transform = Transform3D(12.3131, 0, 0, 0, 12.3131, 0, 0, 0, 12.3131, 0, 0, 0)
 shape = SubResource("SphereShape3D_ctay2")
 
-[node name="HealthbarUI" type="Node3D" parent="."]
+[node name="HealthbarUI" type="Node3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60987, 0)
 script = ExtResource("3_p1snc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="HealthbarUI"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/HealthbarUI"]
 transform = Transform3D(-1.91266, 0, -8.74228e-08, 0, 1, 0, 1.6721e-07, 0, -1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_bgnk3")
 mesh = SubResource("QuadMesh_mw22y")
 
-[node name="SubViewport" type="SubViewport" parent="HealthbarUI"]
+[node name="SubViewport" type="SubViewport" parent="CharacterBody3D/HealthbarUI"]
 transparent_bg = true
 
-[node name="Control" parent="HealthbarUI/SubViewport" instance=ExtResource("3_x7j6d")]
+[node name="Control" parent="CharacterBody3D/HealthbarUI/SubViewport" instance=ExtResource("3_x7j6d")]
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
-
-[editable path="HealthbarUI/SubViewport/Control"]
+[editable path="CharacterBody3D/HealthbarUI/SubViewport/Control"]

@@ -1,8 +1,9 @@
 class_name Enemy
-extends CharacterBody3D
+extends Node3D
 
 @onready var area_3d = $Area3D
-@onready var ai_movement = $Scripts/AIMovement
+@onready var ai_movement = $CharacterBody3D/Scripts/AIMovement
+@onready var character_body_3d = $CharacterBody3D
 @export var is_aggroed: bool = false
 
 @export var health: int = 100

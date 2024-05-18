@@ -1,7 +1,7 @@
 class_name HealthbarUI
 extends Node3D
 
-@onready var enemy_a = $".."
+@onready var enemy_a = $"../.."
 @onready var progress_bar = $SubViewport/Control/ProgressBar
 
 func _process(delta):
