@@ -61,6 +61,7 @@ func start_dialog(speaker, dialog):
 					
 				speak(speaker_sprite, line.location, line.speaker, line.message)
 				tutorial_text.visible = true
+				await get_tree().create_timer(1.0).timeout
 				
 				await Engine.get_main_loop().process_frame
 				while(!Input.is_action_just_pressed("LMB")):
@@ -71,6 +72,7 @@ func start_dialog(speaker, dialog):
 				var decision_tween = get_tree().create_tween() 
 				decision_tween.tween_property(accept_or_refuse, "modulate:a", 1.0, 0.5).set_trans(Tween.TRANS_CUBIC)
 				decision = 0
+				await get_tree().create_timer(1.0).timeout
 				
 				while(decision == 0):
 					await Engine.get_main_loop().process_frame

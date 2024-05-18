@@ -9,11 +9,15 @@ extends Node
 @onready var quest_6 = $Panel/VBoxContainer/Quest6
 @onready var quest_7 = $Panel/VBoxContainer/Quest7
 
+signal On_Quest_Accepted(event)
+signal On_Quest_Turned_In(event)
+signal On_Quest_Signal(event)
 
 var quests: Array
 
 enum QuestStatus
 {
+	Locked,
 	Available,
 	InProgress,
 	ReadyForTurnIn,
@@ -21,8 +25,9 @@ enum QuestStatus
 }
 
 func _ready():
-	quests.append({id = 0, title = "Void Extermination", description = "Defeat 2 different void monkeys and return to Mr. Capsule for your reward", status = QuestStatus.Available, progress = 0, goal = 2, reward= { xp = 100 }})
-	quests.append({id = 1, title = "A Message Most Dire", description = "Talk to Mr. Capsules 2 further up ahead", status = QuestStatus.Available, progress = 0, goal = 1, reward= { xp = 100 }})
+	quests.append({id = 0, title = "Void Extermination", description = "Defeat 2 different void monkeys and return to Mr. Capsule for your reward", status = QuestStatus.Available, progress = 0, goal = 2, reward = { xp = 100 }, quests_to_unlock = [1], quest_accepted_signal = null, quest_signal = null, quest_turned_in_signal = null})
+	quests.append({id = 1, title = "A Message Most Dire", description = "Talk to Mr. Capsules 2 further up ahead", status = QuestStatus.Locked, progress = 0, goal = 0, reward = { xp = 100 }, quests_to_unlock = [2], quest_accepted_signal = null, quest_signal = null, quest_turned_in_signal = null})
+	quests.append({id = 2, title = "A Cube in Need", description = "Pick up the cube on the floor right next to Mr. Capsules 2", status = QuestStatus.Locked, progress = 0, goal = 1, reward = { xp = 100 }, quests_to_unlock = [], quest_accepted_signal = "Enable_Cube_01", quest_signal = null, quest_turned_in_signal = null})
 	pass
 	
 func update_quest_log():
@@ -68,17 +73,37 @@ func update_quest_log():
 func accept_quest(id):
 	if(quests[id].status == QuestStatus.Available):
 		quests[id].status = QuestStatus.InProgress
+		if(quests[id].quest_accepted_signal != null):
+			On_Quest_Accepted.emit(quests[id].quest_accepted_signal)
+			pass
+			
+		if(quests[id].goal == 0):
+			quests[id].status = QuestStatus.ReadyForTurnIn
+			pass
 		print(str("Accepted quest ", quests[id].title))
 		update_quest_log()
+		pass
+	pass
+	
+func emit_quest_signal(id):
+	if(quests[id].quest_signal != null):
+		On_Quest_Accepted.emit(quests[id].quest_signal)
 		pass
 	pass
 
 func deliver_quest(id):
 	if(quests[id].status == QuestStatus.ReadyForTurnIn):
 		quests[id].status = QuestStatus.Done
+		if(quests[id].quest_turned_in_signal != null):
+			On_Quest_Accepted.emit(quests[id].quest_accepted_signal)
+			pass
 		print(str("Completed quest ", quests[id].title))
 		if(quests[id].reward.has('xp')):
 			print(str("Earned ", quests[id].reward.xp, " Experience Points"))
+			pass
+			
+		for next_quest in quests[id].quests_to_unlock:
+			quests[next_quest].status = QuestStatus.Available
 			pass
 		update_quest_log()
 		pass
