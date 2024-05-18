@@ -4,5 +4,7 @@
 
 [resource]
 script = ExtResource("1_1m37j")
+damage = 7
 name = "Sweep"
 cooldown_duration = 5.0
+minimum_level = 3

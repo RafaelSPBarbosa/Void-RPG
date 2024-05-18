@@ -5,7 +5,7 @@ extends Node
 @export var max_health: int = 100
 var level = 1
 var xp = 0
-var xp_to_level = [0, 100, 250, 500, 1000, 2000]
+var xp_to_level = [0, 100, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000]
 
 @onready var player_camera = $PlayerCamera/Pivot/Camera3D
 @onready var player_body = $PlayerBody
@@ -13,16 +13,14 @@ var xp_to_level = [0, 100, 250, 500, 1000, 2000]
 @onready var player_abilities = $PlayerBody/PlayerAbilities
 @onready var level_up_particles = $PlayerBody/LevelUpParticles
 
+signal On_Player_leveled_Up(level)
+
 func _ready():
 	update_level_ui()
 	pass
 
 func _process(delta):
 	get_node("/root/Main/HUD/PlayerPanel/ProgressBar").value = float(health) / float(max_health)
-	
-	if(Input.is_action_just_pressed("Ability01")):
-		earn_xp(50)
-		pass
 	pass
 
 func take_damage(damage):
@@ -51,6 +49,7 @@ func level_up():
 	xp -= xp_to_level[level]
 	level += 1
 	update_level_ui()
+	On_Player_leveled_Up.emit(level)
 	
 	level_up_particles.emitting = true
 	

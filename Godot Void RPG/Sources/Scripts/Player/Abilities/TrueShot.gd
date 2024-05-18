@@ -4,6 +4,11 @@ extends Ability
 @export var damage:int = 15
 
 func use(player):
+	if(player.level < minimum_level):
+		print("Player is not high level enough to use this ability")
+		return
+		pass
+	
 	super.use(player)
 	
 	player.animation_tree.animate_true_shot()
