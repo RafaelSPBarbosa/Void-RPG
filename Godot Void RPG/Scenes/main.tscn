@@ -182,7 +182,6 @@ transitions = ["Start", "Movement_Blend_Space", SubResource("AnimationNodeStateM
 graph_offset = Vector2(-196, -77)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dxm3h"]
-graph_offset = Vector2(-525.863, 69.7851)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_n5yx2")
 nodes/StateMachine/position = Vector2(-80, 40)
 nodes/output/position = Vector2(300, 120)
@@ -340,22 +339,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.665767, 0.291716, 0.319458, 0.60795)
-bones/2/rotation = Quaternion(0.0410022, -3.01698e-08, 5.65864e-09, 0.999159)
+bones/1/rotation = Quaternion(-0.665385, 0.291916, 0.319275, 0.608368)
+bones/2/rotation = Quaternion(0.0408078, -3.01738e-08, 5.65221e-09, 0.999167)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0628815, 0.00623274, -0.10106, 0.992872)
-bones/8/rotation = Quaternion(0.175004, 0.0466294, 0.207803, 0.961258)
-bones/9/rotation = Quaternion(0.281194, 0.0092211, -0.0701779, 0.957037)
+bones/7/rotation = Quaternion(-0.0628281, 0.00624516, -0.101312, 0.992849)
+bones/8/rotation = Quaternion(0.174917, 0.0466755, 0.208277, 0.961169)
+bones/9/rotation = Quaternion(0.280936, 0.00996614, -0.0690654, 0.957186)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.203105, -0.576711, 0.225273, 0.758555)
-bones/12/rotation = Quaternion(-0.712124, -0.0278798, 0.0282408, 0.700931)
+bones/11/rotation = Quaternion(-0.202724, -0.576681, 0.225707, 0.75855)
+bones/12/rotation = Quaternion(-0.711896, -0.02778, 0.0283178, 0.701164)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0495194, 0.23781, -0.339387, 0.908741)
-bones/19/rotation = Quaternion(-0.36277, -0.246386, -0.34166, 0.83124)
-bones/20/rotation = Quaternion(-0.611077, 0.0396901, -0.0874376, 0.785725)
+bones/18/rotation = Quaternion(0.0493846, 0.237988, -0.339026, 0.908837)
+bones/19/rotation = Quaternion(-0.362559, -0.246253, -0.342082, 0.831198)
+bones/20/rotation = Quaternion(-0.611046, 0.0396466, -0.0874488, 0.78575)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -472,17 +471,81 @@ Abilities = [NodePath("AbilitySlot01"), NodePath("AbilitySlot02"), NodePath("Abi
 layout_mode = 2
 ability = ExtResource("10_mtqtk")
 
+[node name="Label" type="Label" parent="HUD/Abilities_HBoxContainer/AbilitySlot01"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AbilitySlot02" parent="HUD/Abilities_HBoxContainer" instance=ExtResource("7_7co3a")]
 layout_mode = 2
 ability = ExtResource("11_l0hfq")
+
+[node name="Label2" type="Label" parent="HUD/Abilities_HBoxContainer/AbilitySlot02"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AbilitySlot03" parent="HUD/Abilities_HBoxContainer" instance=ExtResource("7_7co3a")]
 layout_mode = 2
 ability = ExtResource("12_e2v28")
 
+[node name="Label3" type="Label" parent="HUD/Abilities_HBoxContainer/AbilitySlot03"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AbilitySlot04" parent="HUD/Abilities_HBoxContainer" instance=ExtResource("7_7co3a")]
 layout_mode = 2
 ability = ExtResource("13_eu57w")
+
+[node name="Label4" type="Label" parent="HUD/Abilities_HBoxContainer/AbilitySlot04"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayerPanel" type="Panel" parent="HUD"]
 offset_left = 15.0
