@@ -8,6 +8,8 @@ extends CharacterBody3D
 @export var health: int = 100
 @export var max_health: int = 100
 
+@export var xp_worth = 10
+
 @export var damage: int = 5
 @export var time_between_attacks: float = 3
 var time_since_last_attack = 0
@@ -43,6 +45,7 @@ func take_damage(damage):
 	
 func die():
 	print(str(name, " has died"))
+	get_node("/root/Main/Player").earn_xp(xp_worth)
 	queue_free()
 	pass
 	

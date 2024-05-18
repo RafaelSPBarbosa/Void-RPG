@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://bglvd7u03maki"]
+[gd_scene load_steps=88 format=3 uid="uid://bglvd7u03maki"]
 
 [ext_resource type="Material" uid="uid://b2gdwp4n4vsmq" path="res://Sources/Materials/Grid/Grid.tres" id="1_6naa0"]
 [ext_resource type="Material" uid="uid://c2y0fog8cwab7" path="res://Sources/Materials/Grid/GridSmall.tres" id="1_xy84u"]
@@ -153,11 +153,28 @@ size = Vector3(5.23, 2.695, 3.39)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqvh6"]
 size = Vector3(2.64, 2.67, 13.864)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hs7l"]
+albedo_color = Color(0.97787, 0.702651, 0, 1)
+emission_enabled = true
+emission = Color(0.888556, 0.629053, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4t2v1"]
+
+[sub_resource type="Curve" id="Curve_ff8ni"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.48062, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxuyj"]
 bg_color = Color(0, 0, 0, 0.231373)
 
 [sub_resource type="Theme" id="Theme_n1a3k"]
 default_font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkxf0"]
+bg_color = Color(0.215902, 0.215902, 0.215902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lmph"]
+bg_color = Color(0.757344, 0.265063, 0.831406, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lb35"]
 bg_color = Color(0, 0, 0, 0.847059)
@@ -274,22 +291,22 @@ shape = SubResource("CapsuleShape3D_pfyh7")
 transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerBody/Penguin/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.65949, 0.29498, 0.316446, 0.614753)
-bones/2/rotation = Quaternion(0.0377599, -3.02364e-08, 5.55134e-09, 0.999287)
+bones/1/rotation = Quaternion(-0.653896, 0.297834, 0.313762, 0.6207)
+bones/2/rotation = Quaternion(0.0167087, -3.06609e-08, 4.85356e-09, 0.99986)
 bones/3/rotation = Quaternion(0.0638436, 2.87551e-14, 2.48616e-08, 0.99796)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.061897, 0.00646141, -0.105712, 0.992448)
-bones/8/rotation = Quaternion(0.173464, 0.0474333, 0.216081, 0.959671)
-bones/9/rotation = Quaternion(0.276426, 0.0227363, -0.0499709, 0.959466)
+bones/7/rotation = Quaternion(-0.0568256, 0.00763186, -0.129535, 0.989916)
+bones/8/rotation = Quaternion(0.169382, 0.0495163, 0.237624, 0.955193)
+bones/9/rotation = Quaternion(0.243075, 0.106093, 0.0758222, 0.961202)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.196366, -0.576163, 0.232922, 0.758435)
-bones/12/rotation = Quaternion(-0.708066, -0.0261098, 0.0296047, 0.705042)
+bones/11/rotation = Quaternion(-0.172776, -0.573791, 0.25933, 0.757404)
+bones/12/rotation = Quaternion(-0.679774, -0.014057, 0.0388417, 0.732258)
 bones/13/rotation = Quaternion(-0.152735, 0.026209, -0.0227092, 0.987659)
 bones/17/rotation = Quaternion(0.0945193, -0.130301, -0.750853, 0.640552)
-bones/18/rotation = Quaternion(0.0470294, 0.241079, -0.332697, 0.910484)
-bones/19/rotation = Quaternion(-0.359282, -0.244179, -0.348631, 0.830512)
-bones/20/rotation = Quaternion(-0.610045, 0.0382508, -0.0878076, 0.786557)
+bones/18/rotation = Quaternion(0.0356855, 0.255723, -0.30205, 0.917659)
+bones/19/rotation = Quaternion(-0.356185, -0.242219, -0.35476, 0.829824)
+bones/20/rotation = Quaternion(-0.604973, 0.0312216, -0.0896087, 0.790572)
 bones/22/rotation = Quaternion(-0.0255359, -3.37798e-14, -9.94406e-09, 0.999674)
 bones/23/rotation = Quaternion(0.249916, -0.508089, -0.476073, 0.672861)
 bones/24/rotation = Quaternion(-0.0289498, -0.0289755, -0.824149, 0.56489)
@@ -350,6 +367,25 @@ script = ExtResource("12_4lqsf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/PlayerBody/PlayerAbilities/TrueShot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16877, -7.22688)
 shape = SubResource("BoxShape3D_tqvh6")
+
+[node name="LevelUpParticles" type="CPUParticles3D" parent="Player/PlayerBody"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2hs7l")
+emitting = false
+amount = 16
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("BoxMesh_4t2v1")
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 15.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_ff8ni")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("5_pp2mp")
@@ -442,6 +478,14 @@ offset_bottom = 80.0
 texture = ExtResource("21_c3orc")
 expand_mode = 1
 
+[node name="Level" type="Label" parent="HUD/PlayerPanel"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 45.0
+offset_right = 147.0
+offset_bottom = 68.0
+text = "Level 5"
+
 [node name="ProgressPanel" type="Panel" parent="HUD"]
 anchors_preset = 5
 anchor_left = 0.5
@@ -464,6 +508,75 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "You have collected a cube!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LevelUpNotice" type="Panel" parent="HUD"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.5
+offset_top = 83.025
+offset_right = 576.5
+offset_bottom = 143.49
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("25_v1llv")
+
+[node name="Label" type="Label" parent="HUD/LevelUpNotice"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "You have leveled up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExperienceBar" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -221.0
+offset_top = -27.0
+offset_right = 221.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/ExperienceBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -9.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_wkxf0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2lmph")
+max_value = 1.0
+value = 0.49
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/ExperienceBar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -1.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center]Experience Points[/center]"
+scroll_active = false
 
 [node name="EnemySpawners" type="Node3D" parent="."]
 
@@ -491,6 +604,7 @@ placeholder_waddles = ExtResource("25_bii6j")
 layer = 2
 
 [node name="Control" type="Control" parent="DialogSystem/CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

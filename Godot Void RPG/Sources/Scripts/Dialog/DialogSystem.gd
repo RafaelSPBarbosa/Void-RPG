@@ -3,6 +3,7 @@ extends Node
 
 @onready var dim = $CanvasLayer/Control/Dim
 @onready var canvas_layer = $CanvasLayer
+@onready var control = $CanvasLayer/Control
 
 @onready var tutorial_text = $CanvasLayer/Control/tutorial_text
 
@@ -31,6 +32,8 @@ enum Location {
 }
 
 func _ready():
+	control.visible = true
+	
 	dim.self_modulate.a = 0.0
 	
 	character_left.set_position(Vector2(-1000, character_left.get_screen_position().y))

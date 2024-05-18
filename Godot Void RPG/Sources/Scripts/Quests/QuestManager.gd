@@ -99,7 +99,7 @@ func deliver_quest(id):
 			pass
 		print(str("Completed quest ", quests[id].title))
 		if(quests[id].reward.has('xp')):
-			print(str("Earned ", quests[id].reward.xp, " Experience Points"))
+			get_node("/root/Main/Player").earn_xp(quests[id].reward.xp)
 			pass
 			
 		for next_quest in quests[id].quests_to_unlock:
