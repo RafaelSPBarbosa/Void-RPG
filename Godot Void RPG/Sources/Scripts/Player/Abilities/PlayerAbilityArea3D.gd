@@ -5,8 +5,8 @@ var enemies: Array
 
 func _on_body_entered(body):
 	if(body.is_in_group("Enemies")):
-		enemies.append(body)
-		print(str("hitting ", body.name))
+		enemies.append(body.get_parent())
+		print(str("hitting ", body.get_parent().name))
 		pass
 	pass
 

@@ -30,10 +30,8 @@ func spawn_new():
 	time_since_enemy_death = 0
 	var scene = preload("res://Prefabs/Enemies/enemy_a.tscn")
 	enemy = scene.instantiate()
-
-	print(enemy.ai_movement)
-	enemy.ai_movement.positions = idle_positions
-	print(enemy.character_body_3d)
-	enemy.character_body_3d.global_position = global_position
 	add_child(enemy)
+
+	enemy.ai_movement.positions = idle_positions
+	enemy.character_body_3d.global_position = global_position
 	pass

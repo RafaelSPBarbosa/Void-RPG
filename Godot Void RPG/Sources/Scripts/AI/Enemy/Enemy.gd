@@ -1,7 +1,7 @@
 class_name Enemy
 extends Node3D
 
-@onready var area_3d = $Area3D
+@onready var area_3d = $CharacterBody3D/Area3D
 @onready var ai_movement = $CharacterBody3D/Scripts/AIMovement
 @onready var character_body_3d = $CharacterBody3D
 @export var is_aggroed: bool = false
@@ -14,6 +14,11 @@ extends Node3D
 @export var damage: int = 5
 @export var time_between_attacks: float = 3
 var time_since_last_attack = 0
+
+func _ready():
+	area_3d.body_entered.connect(_on_area_3d_body_entered)
+	area_3d.body_exited.connect(_on_area_3d_body_entered)
+	pass
 
 func _physics_process(delta):
 	time_since_last_attack += delta

@@ -40,7 +40,6 @@ func _move(delta):
 		pass
 		
 	nav.target_position = target_pos
-	print(nav.get_next_path_position())
 	direction = nav.get_next_path_position() - character_body_3d.global_position
 	direction = direction.normalized()
 	
